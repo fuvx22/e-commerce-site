@@ -1,0 +1,117 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2; /* Màu nền */
+}
+.register {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%; /* Thay đổi chiều rộng của khung đăng nhập */
+  height: 80%; /* Thay đổi chiều cao của khung đăng nhập */
+  max-width: 1000px; /* Chiều rộng tối đa */
+  max-height: 600px; /* Chiều cao tối đa */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.register-left,
+.register-right {
+  flex: 1;
+  padding: 20px; /* Khoảng cách nội dung với biên của phần tử */
+}
+.register-right form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa các phần tử */
+}
+
+/* CSS cho các nhãn và input trong form đăng nhập */
+/* CSS cho ô input */
+.register-right form .input-register {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc; /* Viền */
+  border-radius: 5px; /* Bo tròn góc */
+  outline: none; /* Loại bỏ đường viền khi focus */
+  transition: #323232 0.3s ease; /* Hiệu ứng chuyển đổi màu viền */
+}
+
+/* Hiệu ứng hover cho ô input */
+.register-right form .input-register:hover {
+  border-color: #323232; /* Màu viền khi di chuột qua */
+}
+
+/* Hiệu ứng khi ô input được focus */
+.register-right form .input-register:focus {
+  border-color: black; /* Màu viền khi focus */
+}
+
+/* CSS cho tiêu đề "Đăng Nhập" */
+.register-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa các phần tử */
+}
+.register-left h1 {
+  margin-top: 0; /* Loại bỏ margin trên đỉnh */
+}
+.register-left .hr {
+  width: 10%;
+  height: 5px; /* Độ dày của đường kẻ */
+  background-color: black; /* Màu nền */
+  margin-top: 20px;
+  margin-right: 160px;
+  font-weight: bolder; /* Độ đậm của đường kẻ */
+  font-size: 50px; /* Khoảng cách nội dung với biên của phần tử */
+}
+.register-right form .btn {
+  display: flex;
+  margin-top: 15px;
+  /* Sử dụng flexbox để căn chỉnh phần tử bên trong */
+}
+/* CSS cho button Đăng Nhập */
+.register-right form .btn .btn-register {
+  margin-right: 22rem;
+  padding: 10px 20px; /* Kích thước nút */
+  border: 1px solid #323232; /* Loại bỏ viền */
+  background-color: #323232; /* Màu nền ban đầu */
+  color: #fff; /* Màu chữ */
+  border-radius: 5px; /* Bo tròn các góc */
+  cursor: pointer; /* Đổi con trỏ chuột khi di chuyển qua nút */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền và màu chữ */
+}
+
+/* CSS cho button khi di chuột qua */
+.register-right form .btn .btn-register:hover {
+  background-color: #fff;
+  color: #323232;
+  border-color: #323232; /* Màu nền khi di chuột qua */
+}
+.icon-arrow {
+  margin-right: 10px;
+}
+.forgot-register a {
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  color: #323232; /* Màu chữ */
+  font-weight: 400; /* Độ đậm của chữ */
+  font-size: 16px; /* Kích thước chữ */
+  transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu chữ */
+}
+
+/* Hiệu ứng khi di chuột qua */
+.forgot-register a:hover {
+  color: #0056b3; /* Màu chữ khi di chuột qua */
+}
+.error-message {
+  color: #323232;
+  margin-bottom: 10px;
+}
+.error-email {
+  color: red;
+  margin-bottom: 10px;
+  margin-right: 19.9rem;
+}

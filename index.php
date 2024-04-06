@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
 </head>
-<body>
+<body> 
     <?php
       require("components/header.php")
     ?>

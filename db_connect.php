@@ -1,13 +1,40 @@
 <?php
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+class Database
+{
+  private $host;
+  private $username;
+  private $password;
+  private $dbname;
+  private $conn;
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+  public function __construct()
+  {
+    $this->host = "localhost:3307";
+    $this->username = "root";
+    $this->password = "";
+    $this->dbname = "db_cuahangthoitrang";
+    $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-  die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
+    if ($this->conn->connect_error) {
+      die("Kết nối không thành công: " . $this->conn->connect_error);
+    }
+   
+  }
+  public function query($sql)
+  {
+    $result = $this->conn->query($sql);
+
+    // Kiểm tra và xử lý lỗi nếu có
+    if (!$result) {
+      die("Lỗi truy vấn: " . $this->conn->error);
+    }
+
+    return $result;
+  }
+
+  // Phương thức ngắt kết nối
+  public function __destruct()
+  {
+    $this->conn->close();
+  }
 }

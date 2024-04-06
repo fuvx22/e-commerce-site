@@ -55,7 +55,7 @@
     </button>
   </div>  
   <div class="auth-section">
-    <button class="login-btn">Đăng nhập</button>
+    <button class="login-btn"><a href="/e-commerce-site/pages/login.php">Đăng Nhập</a></button>
     <button class="register-btn">Đăng ký</button>
   </div>
 </header>
