@@ -53,7 +53,7 @@
     <button class="search-btn">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
-  </div>  
+  </div>
   <div class="auth-section">
     <button class="login-btn"><a href="/e-commerce-site/pages/login.php">Đăng Nhập</a></button>
     <button class="register-btn">Đăng ký</button>
@@ -66,23 +66,23 @@
   var categoryBtn = document.querySelector(".category-btn")
 
   var icon = document.querySelector(".category-btn i");
-  
+
   categoryBtn.addEventListener("click", function(event) {
     if (categoryMenu.style.display === "none") {
-      categoryMenu.style.display = "grid";  
-    }
-    else {
+      categoryMenu.style.display = "grid";
+    } else {
       categoryMenu.style.display = "none";
     }
 
   });
-  
-  categoryMenu.addEventListener("click", function(event) { event.stopPropagation(); });
+
+  categoryMenu.addEventListener("click", function(event) {
+    event.stopPropagation();
+  });
 
   window.addEventListener("click", function(event) {
     if (event.target != categoryMenu && event.target != categoryBtn && event.target != icon) {
       categoryMenu.style.display = "none";
     }
   })
-  
 </script>
