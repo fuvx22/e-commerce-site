@@ -9,7 +9,7 @@ class Database
 
   public function __construct()
   {
-    $this->host = "localhost:3307";
+    $this->host = "localhost";
     $this->username = "root";
     $this->password = "";
     $this->dbname = "db_cuahangthoitrang";
@@ -18,7 +18,6 @@ class Database
     if ($this->conn->connect_error) {
       die("Kết nối không thành công: " . $this->conn->connect_error);
     }
-   
   }
   public function query($sql)
   {
@@ -33,7 +32,7 @@ class Database
   }
 
   // Phương thức ngắt kết nối
-  public function __destruct()
+  public function close()
   {
     $this->conn->close();
   }
