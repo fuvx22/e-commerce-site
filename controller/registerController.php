@@ -1,14 +1,18 @@
 <?php 
     require_once "../model/userModel.php";
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['age'])){
+        if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['date'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
             $name = $_POST['name'];
-            $age = $_POST['age'];
+            $date = $_POST['date'];
+            $today = new DateTime(date("Y-m-d"));
+            $birthday = new DateTime($date);
+            $diff = $today->diff($birthday);
+            $age = $diff->y;
             $role = 2;
             $enrollDate = date("Y-m-d");
-            if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $name) || $age >= 80 ){
+            if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $name)  ){
                 header("Location:../pages/register.php?error=failed");
                 exit();
             }

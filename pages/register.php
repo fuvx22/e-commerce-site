@@ -27,12 +27,14 @@
                 echo '<p class="error-message" >Thông tin Đăng Kí không hợp lệ!</p>';
             }
             ?>
-            <form action="../controller/registerController.php" method="post"> 
+            <form action="../controller/registerController.php" method="post" onsubmit="return checkFormValidity()"> 
             <input class="input-register" type="text" name="name" placeholder="Your Full Name" required>
-            <input class="input-register" type="number" name="age" placeholder="Your Age" required>
+            <input class="input-register" type="date" name="date" id="start" name="trip-start" min="1900-01-01" max="2100-12-31" required />
             <input class="input-register input-email" type="email"  name="email" placeholder="Your Email" required>
             <p class="error-email" style="display:none;"></p>
-            <input class="input-register" type="password" name="password" placeholder="Your Password" required>
+            <input class="input-register" id="password" type="password" onkeyup='passConfirmation()' name="password" placeholder="Your Password" required>
+            <input class="input-register" id="confirmPassword" type="password" onkeyup='passConfirmation()' placeholder="Repeat Your Password" required>
+            <span class="message-password" id="Message"></span>
             <div class="btn">
                 <button class="btn-register">Đăng Kí</button> 
             </div>
