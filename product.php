@@ -3,7 +3,7 @@ require_once("db_connect.php");
 
 $conn = new Database();
 
-$products = $conn->query("SELECT p.*, s.name AS sname FROM product AS p JOIN subcategory AS s ON p.subcategoryId = s.id");
+$products = $conn->query("SELECT p.*, s.name AS sname FROM product AS p JOIN subcategory AS s ON p.subcategoryId = s.id ORDER BY id DESC");
 
 $conn->close();
 
@@ -81,7 +81,7 @@ function formatNumber($number)
                 <td><?php echo formatNumber($row['price']) ?>đ</td>
                 <td><?php echo $row['quantity'] ?></td>
                 <td style="min-width: 100px;">
-                  <a href="./product_control/edit.php?id=<?php echo $row['id'] ?>">
+                  <a href="./product_control/edit.php?id=<?php echo $row['id'] ?>" style="text-decoration: none;">
                     <i class="fa-solid fa-pen-to-square fs-5 mx-1"></i>
                   </a>
                   <a idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
