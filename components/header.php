@@ -12,8 +12,10 @@
   </span>
    <span class="topmenuright">
    <div class="search">
+   <form action="/e-commerce-site/search_product/search.php" method="POST">
     <i class="fa-solid fa-magnifying-glass"></i>
-   <input type="text" placeholder="Tìm Kiếm">
+    <input type="text" placeholder="Tìm Kiếm" name="key">
+   </form>  
     
    </div>
     <i class="fa-solid fa-circle-user" ></i>

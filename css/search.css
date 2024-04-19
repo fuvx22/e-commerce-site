@@ -1,0 +1,16 @@
+.mt-custom{
+    margin-top: 144px;
+}
+
+.aside {
+    background-color: white;
+    & input[type="submit"]{
+        background-color: #2DA9DF;
+        color: white ;
+    }
+
+    & input[type="number"]{
+        width : 47%;
+        height: 32px;
+    }
+}
