@@ -21,14 +21,15 @@
     }else{
         $key='';
     }
-    $con = mysqli_connect("localhost","nhatthao","123","db_cuahangthoitrang");
+    require_once("../db_connect.php");
+    $database = new Database();
     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 8;
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1; 
     $offset = ($current_page - 1) * $item_per_page;
     // Số sản phẩm hiển thị trong 1 trang bị giới hạn bởi 8
-    $products = mysqli_query($con, "SELECT * FROM product WHERE name LIKE '%".$key."%' LIMIT ".$item_per_page." OFFSET ".$offset);
+    $products = $database->query("SELECT * FROM product WHERE name LIKE '%".$key."%' LIMIT ".$item_per_page." OFFSET ".$offset);
     // Lấy tất cả số sản phẩm ứng với điều kiện
-    $totalRecords = mysqli_query($con, "SELECT * FROM product WHERE name LIKE '%".$key."%'");
+    $totalRecords = $database->query("SELECT * FROM product WHERE name LIKE '%".$key."%'");
     $totalRecords = $totalRecords->num_rows;
     $totalPages = ceil($totalRecords / $item_per_page);
 ?>
@@ -42,7 +43,7 @@
             <form action="assets/PHP/index.php" id="searchForm" class="row">
                 <select id="category" name="category" class="col-6 mb-4 border">
                     <?php 
-                        $result = mysqli_query($con, "SELECT * FROM subcategory");
+                        $result = $database->query("SELECT * FROM subcategory");
                         echo '<option value="0">Thể loại</option>';
                         while($row =mysqli_fetch_array($result)){
                             $name = $row['name'];
@@ -109,7 +110,7 @@
                     $end_page = $totalPages;
                     echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page='. $item_per_page .'&page='. $end_page.'">Last</a>';
                 }
-            mysqli_close($con);
+            $database->close();
             ?>
             </div>
         </div>
