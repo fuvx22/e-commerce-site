@@ -257,3 +257,20 @@ input {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 200px;
 } */
+
+.landing-product-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột có kích thước bằng nhau */
+  grid-template-rows: repeat(2, auto); /* Tạo 2 hàng với chiều cao tự động */
+  gap: 10px; /* Khoảng cách giữa các ô */
+
+  & a img{
+    max-width: 320px;
+  }
+}
+
+.item {
+  background-color: #ddd;
+  padding: 20px;
+  text-align: center;
+}

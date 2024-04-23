@@ -3,8 +3,8 @@
 ?>
 <div class="aopolo">
     <h3>ÁO POLO</h3>
-    <img src="./img/aopolobig.jpg"  width="100%">
-    <div class="itemaopolo">
+    <img src="./img/aopolobig.jpg" width="100%">
+    <div class="landing-product-container mt-4">
       <?php 
         load_products(1); // Hàm trong file load.php
       ?>
@@ -20,7 +20,7 @@
     <div class="aophong">
       <h3>ÁO PHÔNG</h3>
       <img src="./img/aophongbig.jpg"  width="100%">
-      <div class="itemaophong">
+      <div class="landing-product-container mt-4">
         <?php 
           load_products(2); // Hàm trong file load.php
         ?>
