@@ -22,27 +22,63 @@
         $product = $database -> query('SELECT * FROM product WHERE id ='.$id);
         $row = $product->fetch_assoc();
     ?>
-    <div class="container" style="margin-top: 140px">
+    <div class="container" style="margin-top: 140px; margin-bottom: 40px;">
         <div class="row" >
             <img src="<?=$row['image']?>" alt="" class="col-md-7 img-fluid">
             <div class="col-md-5">
                 <h1 class="border-bottom border-success p-2 border-opacity-10">Tên sản phẩm: <?=$row['name']?></h1>
                 <p class="border-bottom border-success p-2 border-opacity-10">Mã sản phẩm: <?=$row['id']?></p>
-                <p class="border-bottom border-success p-2 border-opacity-10">Giá sản phẩm: <?=$row['price']?></p>
+                <p class="border-bottom border-success p-2 border-opacity-10">Giá sản phẩm: <?=number_format($row['price'],0,",",",")?>₫</p>
+                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary" style="background-color: #F3F4F4; color: black; border: 1px solid #F3F4F4" onclick="decreaseNumber()">-</button>
+                    <input type="text" class="btn btn-primary bg-white btn" style="color: black; border: 1px solid #F3F4F4; width: 80px; height: 38px" value="1" id="numberDisplay" oninput="updateNumberFromInput()">
+                    <button type="button" class="btn btn-primary" style="background-color: #F3F4F4; color: black; border: 1px solid #F3F4F4" onclick="increaseNumber()">+</button>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-primary bg-black text-uppercase" type="button" height="50px">Thêm vào giỏ</button>
+                </div>
                 <p style="text-decoration: underline; font-weight: bold;">Mô tả: </p>
                 <p><?=$row['description']?></p>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Left</button>
-                    <button type="button" class="btn btn-primary">Middle</button>
-                    <button type="button" class="btn btn-primary">Right</button>
-                </div>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="button">Thêm vào giỏ</button>
-                </div>
             </div>
         </div>
     </div>
 </div>
+<div class="footer">
+    <div class="footerleft">
+        <?php require('../components/footer.php');?>
+    </div>
+</div>
 </body>
+<script>
+    var number = 1; // Khởi tạo biến số
+
+    function updateNumberDisplay() {
+        document.getElementById("numberDisplay").value = number;
+    }
+
+    function decreaseNumber() {
+        if(number <= 1 ){
+            number = 1;
+        }else{
+            number--; // Giảm số
+        }
+        updateNumberDisplay(); // Cập nhật hiển thị số
+    }
+
+    function increaseNumber() {
+        number++; // Tăng số
+        updateNumberDisplay(); // Cập nhật hiển thị số
+    }
+
+    function resetNumber() {
+        number = 0; // Reset số về 0
+        updateNumberDisplay(); // Cập nhật hiển thị số
+    }
+    
+    function updateNumberFromInput() {
+        var inputValue = document.getElementById("numberDisplay").value;
+        number = parseInt(inputValue) || 0; // Chuyển đổi giá trị sang số, nếu không hợp lệ thì mặc định là 0
+    }
+</script>
 </html>
 
