@@ -4,34 +4,19 @@
 <div class="aopolo">
     <h3>ÁO POLO</h3>
     <img src="./img/aopolobig.jpg" width="100%">
+    <a href="./pages/product_category.php?subcategoryId=1">dấdsa</a>
     <div class="landing-product-container mt-4">
       <?php 
-        load_products(1); // Hàm trong file load.php
+        load_products_8(1); // Hàm trong file load.php
       ?>
-    <!-- <img src="./img/aopolo1.jpg" height="300px" width="20%">
-    <img src="./img/aopolo1.jpg" height="300px" width="20%">
-    <img src="./img/aopolo1.jpg"  height="300px" width="20%">
-    <img src="./img/aopolo1.jpg"  height="300px" width="20%">
-    <img src="./img/aopolo2.jpg"  height="300px" width="20%">
-    <img src="./img/aopolo2.jpg"  height="300px" width="20%">
-    <img src="./img/aopolo2.jpg"  height="300px" width="20%">
-    <img src="./img/aopolo2.jpg"  height="300px" width="20%"> -->
     </div>
     <div class="aophong">
       <h3>ÁO PHÔNG</h3>
       <img src="./img/aophongbig.jpg"  width="100%">
       <div class="landing-product-container mt-4">
         <?php 
-          load_products(2); // Hàm trong file load.php
+          load_products_8(2); // Hàm trong file load.php
         ?>
-        <!-- <img src="./img/aophong1.jpg" height="300px" width="20%">
-        <img src="./img/aophong2.jpg" height="300px" width="20%">
-        <img src="./img/aophong1.jpg" height="300px" width="20%">
-        <img src="./img/aophong2.jpg" height="300px" width="20%">
-        <img src="./img/aophong3.jpg" height="300px" width="20%">
-        <img src="./img/aophong3.jpg" height="300px" width="20%">
-        <img src="./img/aophong3.jpg" height="300px" width="20%">
-        <img src="./img/aophong3.jpg" height="300px" width="20%"> -->
       </div>
       <div>
 

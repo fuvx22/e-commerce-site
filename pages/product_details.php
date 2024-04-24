@@ -51,11 +51,9 @@
 </body>
 <script>
     var number = 1; // Khởi tạo biến số
-
     function updateNumberDisplay() {
         document.getElementById("numberDisplay").value = number;
     }
-
     function decreaseNumber() {
         if(number <= 1 ){
             number = 1;
@@ -64,17 +62,14 @@
         }
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-
     function increaseNumber() {
         number++; // Tăng số
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-
     function resetNumber() {
         number = 0; // Reset số về 0
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-    
     function updateNumberFromInput() {
         var inputValue = document.getElementById("numberDisplay").value;
         number = parseInt(inputValue) || 0; // Chuyển đổi giá trị sang số, nếu không hợp lệ thì mặc định là 0

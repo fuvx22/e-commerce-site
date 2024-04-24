@@ -14,14 +14,10 @@
     <link rel="stylesheet" href="../css/search.css">
 </head>
 <body>
-    
-</body>
-</html>
-
 <?php
-    require_once("./db_connect.php");
     
-    function load_products($subcategory){
+    function load_products_8($subcategory){
+        require_once("./db_connect.php");
         $database = new Database();
         $products = $database->query("SELECT * FROM product WHERE subcategoryId = " . $subcategory . " LIMIT 8");
         while($row = $products->fetch_assoc()){
@@ -29,10 +25,28 @@
             $new_image = str_replace('../uploads/', './uploads/', $image);
             ?>
             <a href="./pages/product_details.php?id=<?=$row['id']?>" style="text-decoration: none;">
-                <img src="<?=$new_image?>" alt="" >
+                <img src="<?=$new_image?>" alt="" class="img-fluid">
+                <p class="text-center text-dark fs-5 mb-0"><?=$row['name']?></p>
+                <p class="text-center text-dark fs-6 fw-bold "><?=number_format($row['price'],0,",",",")?>₫</p>
+            </a>
+        <?php }
+    }
+
+    function load_products_16($subcategory) {
+        require_once("../db_connect.php");
+        $database = new Database();
+        $products = $database->query("SELECT * FROM product WHERE subcategoryId = " . $subcategory . " LIMIT 16");
+        while($row = $products->fetch_assoc()){
+            $image = $row['image'];
+            $new_image = str_replace('../uploads/', './uploads/', $image);
+            ?>
+            <a href="./product_details.php?id=<?=$row['id']?>" style="text-decoration: none;">
+                <img src="<?=$image?>" alt="" class="img-fluid">
                 <p class="text-center text-dark fs-5 mb-0"><?=$row['name']?></p>
                 <p class="text-center text-dark fs-6 fw-bold "><?=number_format($row['price'],0,",",",")?>₫</p>
             </a>
         <?php }
     }
 ?>
+</body>
+</html>
