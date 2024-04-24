@@ -15,13 +15,21 @@
 </head>
 <body>
     <?php
+    require("../components/header.php");
     require("../load_product/load.php");
     $subcategoryId = isset($_GET['subcategoryId']) ? $_GET['subcategoryId']:1;
+    $subcategoryName = isset($_GET['subcategoryName']) ? $_GET['subcategoryName']:' ';
     ?>
-    <div class="container">
+    <div class="container" style="margin-top: 200px">
+        <p class="text-center">SP:<?=$subcategoryName?></p>
         <div class="landing-product-container">
             <?php load_products_16($subcategoryId);?>
         </div>
+    </div>
+    <div class="footer">
+    <div class="footerleft">
+      <?php require ("../components/footer.php");
+      ?>
     </div>
 </body>
 </html>

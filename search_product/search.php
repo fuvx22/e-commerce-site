@@ -71,14 +71,13 @@
             }
             ?>
             <?php while ($row = mysqli_fetch_array($products)){?>
-                <div class="col-md-4 m-4" style="width: 12rem;">
+                <a href="../pages/product_details.php?id=<?=$row['id']?>" class="col-md-4 m-4 text-dark" style="width: 12rem; text-decoration: none;">   
                     <img class="card-img-top" src="<?=$row['image']?>" alt="">
                     <div class="card-body">
                         <h3 card-title class="text-center"><?=$row['name']?></h3>
                         <p class="card-text text-center"><?=number_format($row['price'],0,",",".") ?> đ</p>
-                        <!-- <p class="card-text text-center"><?=$row['quantity']?></p> -->
                     </div>
-                </div>
+                </a>
             <?php }?>
             <!-- Phân trang -->
             <div class="text-center mb-5" id="pagenavi">
