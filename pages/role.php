@@ -1,9 +1,9 @@
 <?php
-require_once("db_connect.php");
+require_once("../db_connect.php");
 
 $conn = new Database();
 
-$products = $conn->query("SELECT p.*, s.name AS sname FROM product AS p JOIN subcategory AS s ON p.subcategoryId = s.id ORDER BY id DESC");
+$role = $conn->query("SELECT * FROM role");
 
 $conn->close();
 
@@ -22,7 +22,7 @@ function formatNumber($number)
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -30,16 +30,16 @@ function formatNumber($number)
 <body>
   <div class="container">
     <div class="col my-1">
-      <h3>Quản lý sản phẩm</h3>
+      <h3>Quản lý quyền</h3>
     </div>
-    <div class="container">
-      <a href="./product_control/add_new.php" class="btn btn-success my-2">Thêm sản phẩm</a>
+    <div class="container mb-2">
+      <a href="../role_control/add-role.php" class="btn btn-success my-2">Thêm quyền mới</a>
     </div>
     <div class="container">
       <?php
       session_start();
-      if (isset($_SESSION["product_msg"])) {
-        $msg = $_SESSION["product_msg"];
+      if (isset($_SESSION["role_msg"])) {
+        $msg = $_SESSION["role_msg"];
         echo '
         <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
           . $msg .
@@ -47,7 +47,7 @@ function formatNumber($number)
             <span aria-hidden="true">&times;</span>
           </button>
         </div>';
-        unset($_SESSION["product_msg"]);
+        unset($_SESSION["role_msg"]);
       }
       ?>
       <table class="table text-center">
@@ -55,33 +55,25 @@ function formatNumber($number)
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Id</th>
-            <th scope="col">Tên sản phẩm</th>
-            <th scope="col">Hình ảnh</th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Thể loại</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Số lượng</th>
+            <th scope="col">Tên quyền</th>
+            <th scope="col"></th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <?php
-          if ($products->num_rows > 0) {
+          if ($role->num_rows > 0) {
             $count = 0;
-            while ($row = $products->fetch_assoc()) {
+            while ($row = $role->fetch_assoc()) {
               $count++;
           ?>
               <tr>
                 <th scope="row"><?php echo $count ?></th>
                 <td><?php echo $row['id'] ?></td>
-                <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['image'] ?></td>
-                <td><?php echo $row['description'] ?></td>
-                <td><?php echo $row['sname'] ?></td>
-                <td><?php echo formatNumber($row['price']) ?>đ</td>
-                <td><?php echo $row['quantity'] ?></td>
-                <td style="min-width: 100px;">
-                  <a href="./product_control/edit.php?id=<?php echo $row['id'] ?>" style="text-decoration: none;">
+                <td><?php echo $row['roleName'] ?></td>
+                <td><button class="btn btn-dark">Xem quyền</button></td>
+                <td style="min-width: 120px;">
+                  <a href="../role_control/edit-role.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
                     <i class="fa-solid fa-pen-to-square fs-5 mx-1"></i>
                   </a>
                   <a idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
@@ -109,7 +101,7 @@ function formatNumber($number)
             <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
           </div>
           <div class="modal-body">
-            Bạn có chắc chắn muốn xóa sản phẩm này?
+            Bạn có chắc chắn muốn xóa quyền này này?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
@@ -130,12 +122,13 @@ function formatNumber($number)
 
   const handleConfirmDelete = () => {
     if (idToDelete != -1) {
-      document.location.href = "./product_control/delete.php?id=" + idToDelete;
+      document.location.href = "../role_control/delete-role.php?id=" + idToDelete;
     }
   }
 
   setTimeout(function() {
     var alert = document.getElementById('myAlert');
+    if (alert == null) return;
     var bsAlert = new bootstrap.Alert(alert);
     bsAlert.close();
   }, 3000);
