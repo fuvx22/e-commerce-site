@@ -25,7 +25,7 @@ $conn->close();
 <body>
   <div class="container">
     <div class="container">
-      <h3>Quản lý danh mục và sản phẩm</h3>
+      <h3>Quản lý danh mục và thể loại sản phẩm</h3>
 
       <?php
       session_start();

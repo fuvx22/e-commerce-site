@@ -23,6 +23,7 @@ function formatNumber($number)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../css/phu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -71,7 +72,7 @@ function formatNumber($number)
                 <th scope="row"><?php echo $count ?></th>
                 <td><?php echo $row['id'] ?></td>
                 <td><?php echo $row['roleName'] ?></td>
-                <td><button class="btn btn-dark">Xem quyền</button></td>
+                <td><button class="btn btn-dark view-role" data-role-id="<?php echo $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#viewRoleModal">Xem quyền</button></td>
                 <td style="min-width: 120px;">
                   <a href="../role_control/edit-role.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
                     <i class="fa-solid fa-pen-to-square fs-5 mx-1"></i>
@@ -110,6 +111,32 @@ function formatNumber($number)
         </div>
       </div>
     </div>
+    <div class="modal fade" id="viewRoleModal" tabindex="-1" aria-labelledby="viewRoleModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewRoleModalLabel">Chi tiết quyền</h5>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped border">
+              <thead>
+                <tr>
+                  <th scope="col">Chức năng</th>
+                  <th scope="col">Thêm</th>
+                  <th scope="col">Sửa</th>
+                  <th scope="col">Xóa</th>
+                  <th scope="col">Xem</th>
+                </tr>
+              </thead>
+              <tbody id="roleFeaturesActions">
+                <!-- The features and actions will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 <script>
@@ -132,6 +159,21 @@ function formatNumber($number)
     var bsAlert = new bootstrap.Alert(alert);
     bsAlert.close();
   }, 3000);
+
+  document.querySelectorAll('.view-role').forEach(button => {
+    button.addEventListener('click', function() {
+      const roleId = this.dataset.roleId;
+
+      // Fetch the features and actions for the role from the server
+      fetch(`../role_control/view-role.php?role_id=${roleId}`)
+        .then(response => response.json())
+        .then(data => {
+
+          // Populate the table with the fetched data
+          document.getElementById('roleFeaturesActions').innerHTML = data;
+        });
+    });
+  });
 </script>
 
 
