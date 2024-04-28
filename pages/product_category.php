@@ -15,21 +15,20 @@
 </head>
 <body>
     <?php
-    require("../components/header.php");
-    require("../load_product/load.php");
+    require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/header.php');
+    require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_product.php');
     $subcategoryId = isset($_GET['subcategoryId']) ? $_GET['subcategoryId']:1;
     $subcategoryName = isset($_GET['subcategoryName']) ? $_GET['subcategoryName']:' ';
     ?>
     <div class="container" style="margin-top: 200px">
-        <p class="text-center">SP:<?=$subcategoryName?></p>
+        <p class="fs-2 fw-bold"><?=$subcategoryName?></p>
         <div class="landing-product-container">
             <?php load_products_16($subcategoryId);?>
         </div>
     </div>
     <div class="footer">
     <div class="footerleft">
-      <?php require ("../components/footer.php");
-      ?>
+      <?php require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/footer.php');?>
     </div>
 </body>
 </html>

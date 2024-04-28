@@ -1,5 +1,5 @@
 <?php
-require_once("../db_connect.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
 
 $database = new Database();
 

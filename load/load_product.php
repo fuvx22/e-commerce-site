@@ -15,9 +15,9 @@
 </head>
 <body>
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
     
     function load_products_8($subcategory){
-        require_once("./db_connect.php");
         $database = new Database();
         $products = $database->query("SELECT * FROM product WHERE subcategoryId = " . $subcategory . " LIMIT 8");
         while($row = $products->fetch_assoc()){
@@ -34,7 +34,6 @@
     }
 
     function load_products_16($subcategory) {
-        require_once("../db_connect.php");
         $database = new Database();
         $subcategoryId = isset($_GET['subcategoryId']) ? $_GET['subcategoryId'] : 1;
         $subcategoryName = isset($_GET['subcategoryName']) ? $_GET['subcategoryName'] : ' ';
@@ -82,10 +81,10 @@
                 $end_page = $totalPages;
                 echo '<a class="text-muted mx-2 text-decoration-none" href="?subcategoryId='.$subcategoryId.'&subcategoryName='.$subcategoryName.'&per_page='. $item_per_page .'&page='. $end_page.'">Last</a>';
             }
-        $database->close();
-        ?>
+            ?>
         </div>
         <?php 
+        $database->close();
     }
 ?>
 </body>

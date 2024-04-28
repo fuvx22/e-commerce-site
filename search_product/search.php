@@ -15,13 +15,13 @@
 </head>
 <body>
 <?php
-    require("../components/header.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/header.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
     if(isset($_POST['key'])){
         $key = $_POST['key'];
     }else{
         $key='';
     }
-    require_once("../db_connect.php");
     $database = new Database();
     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 8;
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1; 
@@ -120,7 +120,7 @@
 </div>
 <div class="footer">
     <div class="footerleft">
-    <?php require "../components/footer.php";?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/footer.php');?>
     </div>
 </div>
 </body>

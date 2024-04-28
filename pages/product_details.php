@@ -15,8 +15,8 @@
 </head>
 <body>
     <?php 
-        require('../components/header.php');
-        require_once("../db_connect.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
+        require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/header.php');
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $database = new Database();
         $product = $database -> query('SELECT * FROM product WHERE id ='.$id);
@@ -45,7 +45,7 @@
 </div>
 <div class="footer">
     <div class="footerleft">
-        <?php require('../components/footer.php');?>
+        <?php require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/footer.php'); ?>
     </div>
 </div>
 </body>
