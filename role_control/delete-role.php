@@ -1,7 +1,16 @@
 <?php
 require_once('../db_connect.php');
+require_once("../utils/user-auth.php");
 
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isDelete = $userAuth->checkDeletePermission("7");
+
+if (!$isDelete) {
+  header("Location: ../pages/role.php");
+  exit();
+}
 
 $idToDelete = $_GET['id'];
 

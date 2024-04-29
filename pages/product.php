@@ -1,7 +1,15 @@
 <?php
 require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$userAuth->checkReadPermission("2");
+
+$isCreate = $userAuth->checkCreatePermission("2");
+$isUpdate = $userAuth->checkUpdatePermission("2");
+$isDelete = $userAuth->checkDeletePermission("2");
 
 $products = $conn->query("SELECT p.*, s.name AS sname FROM product AS p JOIN subcategory AS s ON p.subcategoryId = s.id ORDER BY id DESC");
 
@@ -23,29 +31,32 @@ function formatNumber($number)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <script defer src="../assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <div class="col my-1">
+    <div class="col mt-2 ms-2">
       <h3>Quản lý sản phẩm</h3>
     </div>
-    <div class="container">
-      <a href="../product_control/add_new.php" class="btn btn-success my-2">Thêm sản phẩm</a>
+    <div class="container my-3">
+      <?php
+      if ($isCreate) {
+        echo '<a href="../product_control/add_new.php" class="btn btn-success">Thêm sản phẩm</a>';
+      } else {
+        echo '<button class="btn btn-dark" disabled>Thêm sản phẩm</button>';
+      }
+      ?>
     </div>
     <div class="container">
       <?php
-      session_start();
       if (isset($_SESSION["product_msg"])) {
         $msg = $_SESSION["product_msg"];
         echo '
         <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
           . $msg .
-          '<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          '
         </div>';
         unset($_SESSION["product_msg"]);
       }
@@ -81,10 +92,10 @@ function formatNumber($number)
                 <td><?php echo formatNumber($row['price']) ?>đ</td>
                 <td><?php echo $row['quantity'] ?></td>
                 <td style="min-width: 100px;">
-                  <a href="../product_control/edit.php?id=<?php echo $row['id'] ?>" style="text-decoration: none;">
+                  <a <?= $isUpdate ? "" : "hidden" ?> href="../product_control/edit.php?id=<?= $row['id'] ?>" style="text-decoration: none">
                     <i class="fa-solid fa-pen-to-square fs-5 mx-1"></i>
                   </a>
-                  <a idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                  <a <?= $isDelete ? "" : "hidden" ?> idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
                     <i class="fa-solid fa-trash fs-5 mx-1"></i>
                   </a>
                 </td>

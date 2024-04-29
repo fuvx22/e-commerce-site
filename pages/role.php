@@ -1,7 +1,15 @@
 <?php
 require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$userAuth->checkReadPermission("7");
+
+$isCreate = $userAuth->checkCreatePermission("7");
+$isUpdate = $userAuth->checkUpdatePermission("7");
+$isDelete = $userAuth->checkDeletePermission("7");
 
 $role = $conn->query("SELECT * FROM role");
 
@@ -24,30 +32,32 @@ function formatNumber($number)
   <title>Document</title>
   <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../css/phu.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <script defer src="../assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <div class="col my-1">
+    <div class="col mt-2 ms-2">
       <h3>Quản lý quyền</h3>
     </div>
-    <div class="container mb-2">
-      <a href="../role_control/add-role.php" class="btn btn-success my-2">Thêm quyền mới</a>
+    <div class="container my-3">
+      <?php
+      if ($isCreate) {
+        echo '<a href="../role_control/add-role.php" class="btn btn-success">Thêm quyền mới</a>';
+      } else {
+        echo '<button class="btn btn-dark" disabled>Thêm quyền mới</button>';
+      }
+      ?>
     </div>
     <div class="container">
       <?php
-      session_start();
       if (isset($_SESSION["role_msg"])) {
         $msg = $_SESSION["role_msg"];
         echo '
         <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
           . $msg .
-          '<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
+          '</div>';
         unset($_SESSION["role_msg"]);
       }
       ?>
@@ -74,10 +84,10 @@ function formatNumber($number)
                 <td><?php echo $row['roleName'] ?></td>
                 <td><button class="btn btn-dark view-role" data-role-id="<?php echo $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#viewRoleModal">Xem quyền</button></td>
                 <td style="min-width: 120px;">
-                  <a href="../role_control/edit-role.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
+                  <a <?= $isUpdate ? "" : "hidden" ?> href="../role_control/edit-role.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
                     <i class="fa-solid fa-pen-to-square fs-5 mx-1"></i>
                   </a>
-                  <a idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                  <a <?= $isDelete ? "" : "hidden" ?> idToDelete="<?php echo $row['id'] ?>" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
                     <i class="fa-solid fa-trash fs-5 mx-1"></i>
                   </a>
                 </td>
