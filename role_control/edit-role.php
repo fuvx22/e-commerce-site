@@ -1,6 +1,15 @@
 <?php
 require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isUpdate = $userAuth->checkUpdatePermission("7");
+
+if (!$isUpdate) {
+  header("Location: ../pages/role.php");
+  exit();
+}
 $features_list = $conn->query("SELECT * FROM chucnang");
 
 if (isset($_POST['submit'])) {

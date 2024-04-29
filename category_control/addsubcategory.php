@@ -1,6 +1,15 @@
 <?php
-require("../db_connect.php");
+require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isCreate = $userAuth->checkCreatePermission("4");
+
+if (!$isCreate) {
+  header("Location: ../pages/category.php");
+  exit();
+}
 
 $categorys = $conn->query("SELECT * FROM category");
 
