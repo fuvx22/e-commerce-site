@@ -15,8 +15,8 @@
 </head>
 <body>
     <?php 
-        require('../components/header.php');
-        require_once("../db_connect.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
+        require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/header.php');
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $database = new Database();
         $product = $database -> query('SELECT * FROM product WHERE id ='.$id);
@@ -45,17 +45,15 @@
 </div>
 <div class="footer">
     <div class="footerleft">
-        <?php require('../components/footer.php');?>
+        <?php require($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/footer.php'); ?>
     </div>
 </div>
 </body>
 <script>
     var number = 1; // Khởi tạo biến số
-
     function updateNumberDisplay() {
         document.getElementById("numberDisplay").value = number;
     }
-
     function decreaseNumber() {
         if(number <= 1 ){
             number = 1;
@@ -64,17 +62,14 @@
         }
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-
     function increaseNumber() {
         number++; // Tăng số
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-
     function resetNumber() {
         number = 0; // Reset số về 0
         updateNumberDisplay(); // Cập nhật hiển thị số
     }
-    
     function updateNumberFromInput() {
         var inputValue = document.getElementById("numberDisplay").value;
         number = parseInt(inputValue) || 0; // Chuyển đổi giá trị sang số, nếu không hợp lệ thì mặc định là 0

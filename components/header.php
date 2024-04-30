@@ -1,4 +1,6 @@
-
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.php');
+?>
 <div class="header">
 <div class="head-text">
   <div class="text">
@@ -49,9 +51,10 @@
 </div>
 <div class="head-bottom">
 <ul class="lietke">
-        <li class="danhmuc" onmouseenter="thaydoi1(1) " onmouseleave="thaydoi2(1)" ><a >ÁO KHOÁC
-        <i class="fa-solid fa-chevron-down" id="thaydoiicon1"></i>
-        </a>
+  <?php
+    load_categories();
+  ?>
+        <!-- <li class="danhmuc" onmouseenter="thaydoi1(1) " onmouseleave="thaydoi2(1)" ><a >ÁO KHOÁC<i class="fa-solid fa-chevron-down" id="thaydoiicon1"></i></a>
           <ul class="item">
           <li class="item1">Áo Khoác Nỉ</li>
           <li class="item22">Áo Khoác Dù</li>
@@ -93,7 +96,7 @@
             <li>Nón</li>
             <li>Vớ</li>
           </ul>
-        </li>
+        </li> -->
       </ul>
 </div>
 </div>
