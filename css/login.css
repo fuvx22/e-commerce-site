@@ -1,4 +1,9 @@
 /* CSS cho phần container chứa trang đăng nhập */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .login-container {
   display: flex;
   justify-content: center;
@@ -40,7 +45,7 @@
 .login-right form input[type="email"],
 .login-right form input[type="password"] {
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   margin-bottom: 15px;
   border: 1px solid #ccc; /* Viền */
   border-radius: 5px; /* Bo tròn góc */

@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+?>
 <div class="header">
 <div class="head-text">
   <div class="text">
@@ -18,7 +20,26 @@
    </form>  
     
    </div>
-    <i class="fa-solid fa-circle-user" ></i>
+   <?php if (isset($_SESSION['userData'])): ?>
+    <?php 
+    // Người dùng đã đăng nhập
+    $userData = $_SESSION['userData'];
+    // Xuất thông tin người dùng trong một thẻ HTML
+    ?>
+    <a href="#">Welcome, <?= htmlspecialchars($userData['name'], ENT_QUOTES, 'UTF-8') ?></a>
+    <div class="dropdown-menu">
+            <a href="/path/to/change-info.php">Thay đổi thông tin</a>
+            <a href="/path/to/logout.php">Đăng xuất</a>
+        </div>
+<?php else: ?>
+    <?php 
+    // Người dùng chưa đăng nhập
+    ?>
+    <a href="/e-commerce-site/controller/loginController.php"><i class="fa-solid fa-circle-user"></i></a>
+<?php endif; ?>
+
+
+    
     <i class="fa-regular fa-heart"></i>
     <a><i class="fa-solid fa-cart-shopping" id="cart"></i>
    </a>

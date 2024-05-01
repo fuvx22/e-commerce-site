@@ -14,9 +14,12 @@
 </head>
 
 <body>
-  <?php
-  require "./components/header.php"
-  ?>
+<?php
+ 
+  require "./components/header.php";  
+?>
+
+  
   <div class="showimg">
     <div class="topmenu">
       <?php

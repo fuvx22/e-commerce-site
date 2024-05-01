@@ -38,10 +38,10 @@
 
 .topmenuleft {
   position: absolute;
-   left: 150px; 
+  left: 150px;
   font-size: 30px;
   color: blue;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 /* .topmenuleft i{
@@ -114,7 +114,6 @@ h4 {
   color: white;
   text-align: center;
   transition: 0.5s;
-
 }
 
 input {
@@ -158,18 +157,19 @@ input {
   position: absolute;
   top: 50px;
 }
-.item ul{
+.item ul {
   padding: 0px;
 }
 .item li {
   /* text-align: center; */
 
   border-color: rgb(82, 124, 161);
-  margin: 15px ;
+  margin: 15px;
 
   white-space: nowrap;
 }
-.item:hover .item1 ,.item2{
+.item:hover .item1,
+.item2 {
   color: aquamarine;
 }
 .danhmuc {
@@ -188,7 +188,7 @@ input {
   letter-spacing: 1.5px;
   cursor: pointer;
 }
-.danhmuc i{
+.danhmuc i {
   font-size: 10px;
 }
 
@@ -202,49 +202,86 @@ input {
   background-color: white;
   padding-left: 100px;
 }
-.cart{
+.cart {
   position: fixed;
   z-index: 500px;
   display: none;
-   top:0px; 
+  top: 0px;
   right: 0px;
   width: 30%;
   height: 100%;
   background-color: aliceblue;
 }
-.cart_header{
+.cart_header {
   display: flex;
 }
-.cart_header i{
+.cart_header i {
   padding: 20px;
   padding-left: 200px;
-
 }
-.cart_header h3{
+.cart_header h3 {
   padding-left: 50px;
 }
-.cart ul{
+.cart ul {
   list-style-type: none;
 }
-.cart li{
+.cart li {
   padding: 10px;
 }
-.cart_footer a{
-  border: solid 1px ;
+.cart_footer a {
+  border: solid 1px;
   text-align: center;
   padding: 10px;
   margin-left: 50px;
   background-color: rgb(65, 20, 200);
 }
-.cart_footer p{
+.cart_footer p {
   margin-left: 50px;
   padding-bottom: 10px;
 }
-.cart_footer span{
+.cart_footer span {
   border-top: solid 1px;
   width: 80%;
   padding-bottom: 10px;
 }
+/* CSS cho dropdown menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hiển thị dropdown menu khi hover vào dropdown */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 /* .product{
   display: none;
   filter: blur(5px);

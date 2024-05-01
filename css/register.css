@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .register-container {
   display: flex;
   justify-content: center;
@@ -32,7 +37,7 @@
 /* CSS cho ô input */
 .register-right form .input-register {
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   margin-bottom: 15px;
   border: 1px solid #ccc; /* Viền */
   border-radius: 5px; /* Bo tròn góc */
