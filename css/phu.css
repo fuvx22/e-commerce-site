@@ -75,3 +75,34 @@ input.role-view {
   padding: 10px;
   margin: 3px 0;
 }
+
+.admin-menu {
+  background-color: #000;
+}
+
+.admin-menu-item:first-child {
+  max-width: 70px;
+  background-color: hsl(348, 83%, 40%);
+}
+
+.admin-menu-item {
+  flex: 1;
+  padding: 3px 0;
+}
+
+.admin-menu-item:hover {
+  background-color: #cbcbcb;
+  & a {
+    color: #000;
+  }
+}
+
+.admin-menu-item a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+}

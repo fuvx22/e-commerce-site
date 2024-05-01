@@ -36,6 +36,7 @@ function formatNumber($number)
 </head>
 
 <body>
+  <?php include("../components/admin-menu.php") ?>
   <div class="container">
     <div class="col mt-2 ms-2">
       <h3>Quản lý sản phẩm</h3>
