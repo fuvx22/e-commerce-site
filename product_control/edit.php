@@ -1,12 +1,22 @@
 <?php
-require("../db_connect.php");
+require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isUpdate = $userAuth->checkUpdatePermission("2");
+
+if (!$isUpdate) {
+  header("Location: ../pages/product.php");
+  exit();
+}
+
 $id = $_GET["id"];
 $sql = "SELECT * FROM product WHERE id = '$id' LIMIT 1";
 $res = $conn->query($sql);
 $row = mysqli_fetch_assoc($res);
 
-$categorys = $conn->query("SELECT * FROM subcategory");
+$roleId = $conn->query("SELECT * FROM role");
 
 if (isset($_POST["submit"])) {
 
@@ -34,7 +44,7 @@ if (isset($_POST["submit"])) {
   if ($result) {
     session_start();
     $_SESSION["product_msg"] = "Cập nhật sản phẩm thành công";
-    header("Location: ../product.php");
+    header("Location: ../pages/product.php");
   }
 
   $conn->close();
@@ -97,7 +107,7 @@ if (isset($_POST["submit"])) {
 
         <div class="mb-2 text-right">
           <button type="submit" class="btn btn-success" name="submit">Lưu</button>
-          <a href="../product.php" class="btn btn-danger">Hủy</a>
+          <a href="../pages/product.php" class="btn btn-danger">Hủy</a>
         </div>
       </form>
     </div>

@@ -1,6 +1,14 @@
 <?php
 require_once('../db_connect.php');
+require_once("../utils/user-auth.php");
 $conn = new Database();
+$userAuth = new userAuth($conn);
+$isCreate = $userAuth->checkCreatePermission("7");
+
+if (!$isCreate) {
+  header("Location: ../pages/role.php");
+  exit();
+}
 $features_list = $conn->query("SELECT * FROM chucnang");
 $conn->close();
 

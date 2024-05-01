@@ -1,5 +1,5 @@
 <?php
-require_once("../db_connect.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
 
 $database = new Database();
 
@@ -23,7 +23,7 @@ $offset = ($current_page - 1) * $item_per_page;
 // Biến $query là biến lấy giới hạn hiển thị (tìm thấy 10 nhưng chỉ lấy 8)
 $query = "SELECT * FROM product WHERE subcategoryId = $category";
 if (!empty($minPrice) || !empty($maxPrice)) {
-    $query .= " AND price BETWEEN $minPrice AND $maxPrice LIMIT " . $item_per_page . " OFFSET " . $offset;
+    $query .= " AND price BETWEEN $minPrice AND $maxPrice LIMIT ".$item_per_page." OFFSET ".$offset;
 }
 $result = $database->query($query);
 // Biến $queryAll là biến thấy tất cả dữ liệu ứng với điều kiện (tìm thấy 10 thì lấy 10)
@@ -39,14 +39,13 @@ echo '<h3 class="text-center">Tìm kiếm</h3>';
 // Kiểm tra và hiển thị kết quả
 if ($result->num_rows != 0) {
     while ($row = $result->fetch_assoc()) { ?>
-        <div class="col-md-4 m-4" style="width: 12rem;">
-            <img class="card-img-top" src="<?= $row['image'] ?>" alt="">
+        <a href="../pages/product_details.php?id=<?=$row['id']?>" class="col-md-4 m-4 text-dark" style="width: 12rem; text-decoration: none;">   
+            <img class="card-img-top" src="<?=$row['image']?>" alt="">
             <div class="card-body">
-                <h3 card-title class="text-center"><?= $row['name'] ?></h3>
-                <p class="card-text text-center"><?= number_format($row['price'], 0, ",", ".") ?> đ</p>
-                <!-- <p class="card-text text-center"><?=$row['quantity']?></p> -->
+                <h3 card-title class="text-center"><?=$row['name']?></h3>
+                <p class="card-text text-center"><?=number_format($row['price'],0,",",".") ?> đ</p>
             </div>
-        </div>
+        </a>
     <?php }
     ?>
     <!-- Phân trang -->
@@ -54,11 +53,11 @@ if ($result->num_rows != 0) {
         <?php
         if ($current_page > 3) {
             $first_page = 1;
-            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page=' . $item_per_page . '&page=' . $first_page . '">First</a>' . "\n";
+            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page='.$item_per_page.'&page='.$first_page.'">First</a>'."\n";
         }
         if ($current_page > 2) {
             $prev_page = $current_page - 1;
-            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page=' . $item_per_page . '&page=' . $prev_page . '">Prev</a>' . "\n";
+            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page='.$item_per_page.'&page='.$prev_page.'">Prev</a>'."\n";
         }
         ?>
         <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
@@ -73,11 +72,11 @@ if ($result->num_rows != 0) {
         <?php
         if ($current_page < $totalPages - 1) {
             $next_page = $current_page + 1;
-            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page=' . $item_per_page . '&page=' . $next_page . '">Next</a>' . "\n";
+            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page='.$item_per_page.'&page='.$next_page.'">Next</a>'."\n";
         }
         if ($current_page < $totalPages - 2) {
             $end_page = $totalPages;
-            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page=' . $item_per_page . '&page=' . $end_page . '">Last</a>';
+            echo '<a class="text-muted mx-2 text-decoration-none" href="?per_page='.$item_per_page.'&page='.$end_page.'">Last</a>';
         }
         ?>
     <?php

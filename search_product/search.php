@@ -15,13 +15,13 @@
 </head>
 <body>
 <?php
-    require("../components/header.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/header.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
     if(isset($_POST['key'])){
         $key = $_POST['key'];
     }else{
         $key='';
     }
-    require_once("../db_connect.php");
     $database = new Database();
     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 8;
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1; 
@@ -71,14 +71,13 @@
             }
             ?>
             <?php while ($row = mysqli_fetch_array($products)){?>
-                <div class="col-md-4 m-4" style="width: 12rem;">
+                <a href="../pages/product_details.php?id=<?=$row['id']?>" class="col-md-4 m-4 text-dark" style="width: 12rem; text-decoration: none;">   
                     <img class="card-img-top" src="<?=$row['image']?>" alt="">
                     <div class="card-body">
                         <h3 card-title class="text-center"><?=$row['name']?></h3>
                         <p class="card-text text-center"><?=number_format($row['price'],0,",",".") ?> đ</p>
-                        <!-- <p class="card-text text-center"><?=$row['quantity']?></p> -->
                     </div>
-                </div>
+                </a>
             <?php }?>
             <!-- Phân trang -->
             <div class="text-center mb-5" id="pagenavi">
@@ -121,7 +120,7 @@
 </div>
 <div class="footer">
     <div class="footerleft">
-    <?php require "../components/footer.php";?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/components/footer.php');?>
     </div>
 </div>
 </body>

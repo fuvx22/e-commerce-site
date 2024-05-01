@@ -1,17 +1,11 @@
 <?php
 require_once('../db_connect.php');
+require_once('../utils/user-auth.php');
 $conn = new Database();
-$role_id = $_GET['id'];
 $features_list = $conn->query("SELECT * FROM chucnang");
-$sql = "SELECT chucnangId, action FROM role_chucnang WHERE roleId = $role_id";
-$role_features_actions = $conn->query($sql);
 
-$read_permission_list = [];
-while ($row = $role_features_actions->fetch_assoc()) {
-  if ($row['action'] == 'read') {
-    $read_permission_list[] = $row['chucnangId'];
-  }
-}
+$userAuth = new userAuth($conn);
+$read_permission_list = $userAuth->read_permission_list;
 
 $conn->close();
 
@@ -23,6 +17,8 @@ function checkReadPermission($read_permission_list, $feature_id)
     return 'hidden';
   }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +45,7 @@ function checkReadPermission($read_permission_list, $feature_id)
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "4") ?>">
       <a href="../pages/category.php">Quản lý danh mục & thể loại</a>
     </div>
-    <div class="side-menu-item p- <?= checkReadPermission($read_permission_list, "5") ?>">
+    <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "5") ?>">
       <a href="../pages/user.php">Quản lý tài khoản</a>
     </div>
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "6") ?>">
