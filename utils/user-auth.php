@@ -22,7 +22,9 @@ class userAuth
   function getPermisstionList()
   {
     $role_id = null;
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
     if (isset($_SESSION['userData'])) {
       $role_id = $_SESSION['userData']['roleId'];
       $sql = "SELECT chucnangId, action FROM role_chucnang WHERE roleId = $role_id";

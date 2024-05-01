@@ -37,6 +37,7 @@ function formatNumber($number)
 </head>
 
 <body>
+  <?php include("../components/admin-menu.php") ?>
   <div class="container">
     <div class="col mt-2 ms-2">
       <h3>Quản lý quyền</h3>
@@ -109,7 +110,7 @@ function formatNumber($number)
               <i class="fa-solid fa-circle-exclamation"></i>
               Lưu ý
             </h5>
-            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             Bạn có chắc chắn muốn xóa quyền này này?
@@ -126,7 +127,7 @@ function formatNumber($number)
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="viewRoleModalLabel">Chi tiết quyền</h5>
-            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <table class="table table-striped border">

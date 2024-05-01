@@ -31,6 +31,7 @@ $conn->close();
 </head>
 
 <body>
+  <?php include("../components/admin-menu.php") ?>
   <div class="container">
     <div class="container">
       <h3>Quản lý danh mục và thể loại sản phẩm</h3>

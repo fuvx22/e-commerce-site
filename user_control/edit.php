@@ -1,6 +1,15 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isUpdate = $userAuth->checkUpdatePermission("5");
+
+if (!$isUpdate) {
+  header("Location: ../pages/user.php");
+  exit();
+}
 $id = $_GET["id"];
 $sql = "SELECT * FROM user WHERE id = '$id' LIMIT 1";
 $res = $conn->query($sql);
@@ -23,9 +32,7 @@ if (isset($_POST["submit"])) {
   echo $sql;
 
   if ($result) {
-    session_start();
-    $_SESSION["product_msg"] = "Cập nhật sản phẩm thành công";
-    header("Location: ../user.php");
+    header("Location: ../pages/user.php");
   }
 
   $conn->close();
@@ -87,7 +94,7 @@ if (isset($_POST["submit"])) {
 
         <div class="mb-2 text-right">
           <button type="submit" class="btn btn-success" name="submit">Lưu</button>
-          <a href="../product.php" class="btn btn-danger">Hủy</a>
+          <a href="../pages/user.php" class="btn btn-danger">Hủy</a>
         </div>
       </form>
     </div>
