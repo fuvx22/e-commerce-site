@@ -13,10 +13,12 @@ class userAuth
     $this->conn = $conn;
     $this->getPermisstionList();
 
+  }
+
+  function isAdmin() {
     if (count($this->read_permission_list) == 0) {
-      header("Location:../index.php");
-      exit();
-    }
+      return false;
+    } else return true;
   }
 
   function getPermisstionList()

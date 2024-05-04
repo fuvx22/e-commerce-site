@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
 </head>
 <body>
+<?php
+        session_start();
+        if (isset($_SESSION['userData'])) {
+            // Nếu chưa đăng nhập, điều hướng đến trang đăng nhập
+            header("Location: /e-commerce-site/index.php");
+            exit();
+        }
+    ?> 
     <?php
       require("../components/header.php")
     ?>
@@ -47,6 +55,8 @@
     </div>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script src="../javascripts/register.js"></script>
+    <script src="../javascripts/example.js"></script>
+    <script src="../javascripts/cart.js"></script>      
 </body>
 
 </html>
