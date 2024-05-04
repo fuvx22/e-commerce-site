@@ -1,10 +1,12 @@
-<<<<<<< HEAD
+
 <?php 
 session_start();
-=======
+?>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.php');
->>>>>>> 3ce3a90d714a4dac596423fc9ade369c64abbbef
+require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/utils/user-auth.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
+
 ?>
 <div class="header">
 <div class="head-text">
@@ -15,8 +17,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.ph
 </div>
 <div class="wrapper">
     <span class="topmenuleft">
-      DP2NT
-  </span>
+      <a href="/e-commerce-site/index.php">DP2NT</a>
+    </span>
    <span class="topmenuright">
    <div class="search">
    <form action="/e-commerce-site/search_product/search.php" method="POST">
@@ -30,12 +32,19 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.ph
     // Người dùng đã đăng nhập
     $userData = $_SESSION['userData'];
     // Xuất thông tin người dùng trong một thẻ HTML
+    $conn = new Database();
+    $userAuth = new userAuth($conn);
+    $isAdmin = $userAuth->isAdmin();
+
     ?>
-    <a href="#">Welcome, <?= htmlspecialchars($userData['name'], ENT_QUOTES, 'UTF-8') ?></a>
-    <div class="dropdown-menu">
-            <a href="/path/to/change-info.php">Thay đổi thông tin</a>
-            <a href="/path/to/logout.php">Đăng xuất</a>
+   <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Welcome, <?= htmlspecialchars($userData['name'], ENT_QUOTES, 'UTF-8') ?></a>
+        <div class="dropdown-menu" style="min-width: 200px;">
+            <a class="<?= $isAdmin ? "" : "hidden"?>" href="/e-commerce-site/pages/admin.php">Trang quản trị</a>
+            <a href="/path/to/change-info.php">Các đơn hàng đã đặt</a>
+            <a href="/e-commerce-site/controller/logoutController.php">Đăng xuất</a>
         </div>
+    </div>
 <?php else: ?>
     <?php 
     // Người dùng chưa đăng nhập
@@ -56,19 +65,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.ph
     <i class="fa-solid fa-arrow-right" id="icon_arrow"></i>
     </div>
     <ul>
-      <li><img src="./img/aopolo1.jpg" height="80px" width="15%"></li>
-      <li><img src="./img/aopolo1.jpg" height="80px" width="15%"></li>
-      <li><img src="./img/aopolo1.jpg" height="80px" width="15%"></li>
-      <li><img src="./img/aopolo1.jpg" height="80px" width="15%"></li>
+     
     </ul>
+    <p class="cart-null" style="color: black; font-weight: 600; text-align: center "></p>
     <div class="cart_footer">
       <div>
+      
       <p>Tổng tiền</p>
       </div>
       <span></span>
-      
-      <a>Xem giỏ hàng</a>
-      <a>Thanh toán</a>
+      <a href="/e-commerce-site/pages/cart.php">Xem giỏ hàng</a>
     </div>
   </div>
   </div>
@@ -76,7 +82,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/load/load_category.ph
 <div class="head-bottom">
 <ul class="lietke">
   <?php
-    load_categories();
+    load_categories();  
   ?>
         <!-- <li class="danhmuc" onmouseenter="thaydoi1(1) " onmouseleave="thaydoi2(1)" ><a >ÁO KHOÁC<i class="fa-solid fa-chevron-down" id="thaydoiicon1"></i></a>
           <ul class="item">

@@ -4,7 +4,7 @@
   margin: 5px 0;
 }
 
-.role-view-containter{
+.role-view-containter {
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -24,7 +24,7 @@ input.role-view {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: hsl(119, 66%, 75%); 
+  background-color: hsl(119, 66%, 75%);
 }
 
 .checkmark:after {
@@ -54,7 +54,7 @@ input.role-view {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .side-menu {
@@ -97,7 +97,7 @@ input.role-view {
   }
 }
 
-.admin-menu-item a{
+.admin-menu-item a {
   display: block;
   width: 100%;
   height: 100%;

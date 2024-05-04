@@ -6,6 +6,10 @@
   left: 0;
   right: 0;
   box-shadow: 2px 2px 5px rgb(174, 172, 172);
+
+  & .hidden {
+    display: none !important;
+  }
 }
 
 .wrapper {
@@ -36,9 +40,10 @@
   color: blue;
 }
 
-.topmenuleft {
+.topmenuleft a {
   position: absolute;
   left: 150px;
+  text-decoration: none;
   font-size: 30px;
   color: blue;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -210,17 +215,27 @@ input {
   right: 0px;
   width: 30%;
   height: 100%;
-  background-color: aliceblue;
+  background-color: white;
+}
+.cart-open {
+  transform: translateX(0);
 }
 .cart_header {
-  display: flex;
+  display: flex; /* Định dạng cart_header là flex container */
+  justify-content: center; /* Căn giữa nội dung bên trong theo chiều ngang */
+  align-items: center; /* Căn giữa nội dung bên trong theo chiều dọc */
 }
 .cart_header i {
   padding: 20px;
   padding-left: 200px;
+  cursor: pointer;
 }
+
 .cart_header h3 {
-  padding-left: 50px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
 }
 .cart ul {
   list-style-type: none;
@@ -228,26 +243,94 @@ input {
 .cart li {
   padding: 10px;
 }
-.cart_footer a {
-  border: solid 1px;
-  text-align: center;
-  padding: 10px;
-  margin-left: 50px;
-  background-color: rgb(65, 20, 200);
+.cart_footer {
+  display: flex; /* Hiển thị nội dung dưới dạng flexbox */
+  justify-content: space-between; /* Giãn cách đều giữa các phần tử con */
+  align-items: center; /* Căn chỉnh các phần tử con theo chiều dọc */
+  padding: 10px 20px; /* Thêm khoảng đệm xung quanh `cart_footer` */
+  border-top: 1px solid #ccc; /* Thêm đường viền trên để phân tách */
+  background-color: white; /* Màu nền nhạt cho phần chân trang */
 }
+
 .cart_footer p {
-  margin-left: 50px;
-  padding-bottom: 10px;
+  margin: 0; /* Loại bỏ khoảng cách mặc định */
+  font-weight: bold; /* Làm cho văn bản đậm hơn để nổi bật */
 }
+
 .cart_footer span {
-  border-top: solid 1px;
-  width: 80%;
-  padding-bottom: 10px;
+  font-weight: bold;
+  color: #333;
 }
+
+.cart_footer a {
+  display: block;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.cart_footer a:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+/* Định dạng cho giỏ hàng */
+.cart-item {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-item img {
+  margin-right: 10px;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.product-quantity,
+.product-price {
+  margin: 5px 0;
+}
+.remove-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.remove-item i {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+}
+/* CSS cho dropdown menu */
 /* CSS cho dropdown menu */
 .dropdown {
   position: relative;
   display: inline-block;
+}
+.dropdown a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 600;
 }
 
 .dropdown-toggle {
@@ -259,8 +342,8 @@ input {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 80%;
+  left: 20%;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   z-index: 1000;

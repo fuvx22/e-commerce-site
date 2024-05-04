@@ -13,6 +13,14 @@
 </head>
 <body>
     <?php
+        session_start();
+        if (isset($_SESSION['userData'])) {
+            // Nếu chưa đăng nhập, điều hướng đến trang đăng nhập
+            header("Location: /e-commerce-site/index.php");
+            exit();
+        }
+    ?> 
+    <?php
       require("../components/header.php")
     ?>
 <div class="login-container">
@@ -48,4 +56,6 @@
 </div>
 
 </body>
+<script src="../javascripts/example.js"></script>
+<script src="../javascripts/cart.js"></script>
 </html>
