@@ -11,18 +11,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <style>
+        .chart {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .bar {
+            display: inline-block;
+            width: 20px;
+            background-color: black;
+            margin-right: 10px;
+            transition: height 0.5s;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+        .col-md-4 {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <?php
         require('../components/header.php');
     ?>
     <div class="container" style="margin-top: 150px;">
-        <div class="dropdown">
-            <select name="statistics" id="statistics">
-                <option value="1" selected>Doanh thu</option>
-                <option value="2">Sản phẩm</option>
-            </select>
-        </div>
+    <h1 class="fs-1 text-center">THỐNG KÊ</h1>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary btn-sm">Doanh thu</button>
+            <button type="button" class="btn btn-primary btn-sm">Sản phẩm</button>
+        </div>  
     </div>
 </body>
 </html>
