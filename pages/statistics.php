@@ -16,6 +16,13 @@
     <?php
         require('../components/header.php');
     ?>
-    <h1 class="text-primary" style="margin-top: 150px;">sdadsda</h1>
+    <div class="container" style="margin-top: 150px;">
+        <div class="dropdown">
+            <select name="statistics" id="statistics">
+                <option value="1" selected>Doanh thu</option>
+                <option value="2">Sản phẩm</option>
+            </select>
+        </div>
+    </div>
 </body>
 </html>
