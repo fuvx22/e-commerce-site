@@ -3,7 +3,6 @@ if (!localStorage.getItem("cart")) {
 }
 function AddToCart() {
   const button = event.target;
-
   const productId = button.getAttribute("data-product-id");
   const productName = button.getAttribute("data-product-name");
   const productPrice = button.getAttribute("data-product-price");

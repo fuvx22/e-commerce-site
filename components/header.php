@@ -41,7 +41,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
         <a href="#" class="dropdown-toggle">Welcome, <?= htmlspecialchars($userData['name'], ENT_QUOTES, 'UTF-8') ?></a>
         <div class="dropdown-menu" style="min-width: 200px;">
             <a class="<?= $isAdmin ? "" : "hidden"?>" href="/e-commerce-site/pages/admin.php">Trang quản trị</a>
-            <a href="/path/to/change-info.php">Các đơn hàng đã đặt</a>
+            <a href="/e-commerce-site/controller/userOrderedController.php">Các đơn hàng đã đặt</a>
             <a href="/e-commerce-site/controller/logoutController.php">Đăng xuất</a>
         </div>
     </div>

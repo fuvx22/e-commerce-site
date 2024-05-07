@@ -3,6 +3,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $data = json_decode(file_get_contents('php://input'), true);
         if(isset($data['userId']) && isset($data['cart']) && isset($data['address']) && isset($data['phone'])){
+            // print_r($data);
             $cart = $data['cart'];
             $userId = $data['userId'];
             $address = $data['address'];
