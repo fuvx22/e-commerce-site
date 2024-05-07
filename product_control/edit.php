@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
   </div>
   <div class="container">
     <div class="text-center">
-      <h3>Cập nhật sản phẩm</h3>
+      <h3>Cập nhật tài khoản</h3>
     </div>
 
 
