@@ -23,42 +23,42 @@
         <!-- Cột trái: danh sách sản phẩm -->
         <div class="col-md-8">
             <!-- Tạo card cho danh sách sản phẩm -->
-            <div class="card">
-                <div class="card-header">
-                    <strong>Danh sách sản phẩm</strong>
-                </div>
-                <div class="card-body">
-                    <!-- List group cho danh sách sản phẩm -->
-                    <div class=" d-flex flex-column justify-content-center align-items-center">
-                        <p class="cart-hide-p"></p>
-                        <a href="/e-commerce-site/index.php" class=" cart-hide-a btn btn-outline-dark text-align-center"></a>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Danh sách sản phẩm</strong>
                     </div>
-                    
-                    <div class="list-group">
-                       
-                        <!-- Một mục danh sách sản phẩm -->
-                        <div class="list-group-item d-flex justify-content-between align-items-center product-item">
-                            <!-- Thông tin sản phẩm -->
-                            <div class="d-flex align-items-center">
-                                <img src="" class="img-thumbnail me-3 product-image" style="width: 60px; height: 60px;">
-                                <div>
-                                    <h5 class="mb-1 product-name"></h5>
-                                    <p class="mb-1 ">Số lượng: 
-                                        <button class="btn btn-sm btn-outline-secondary decrease-quantity">-</button>
-                                        <span class="product-quantity"></span>
-                                        <button class="btn btn-sm btn-outline-secondary increase-quantity">+</button>
-                                    </p>
+                    <div class="card-body">
+                        <!-- List group cho danh sách sản phẩm -->
+                        <div class=" d-flex flex-column justify-content-center align-items-center">
+                            <p class="cart-hide-p"></p>
+                            <a href="/e-commerce-site/index.php" class=" cart-hide-a btn btn-outline-dark text-align-center"></a>
+                        </div>
+                        
+                        <div class="list-group">
+                        
+                            <!-- Một mục danh sách sản phẩm -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center product-item">
+                                <!-- Thông tin sản phẩm -->
+                                <div class="d-flex align-items-center">
+                                    <img src="" class="img-thumbnail me-3 product-image" style="width: 60px; height: 60px;">
+                                    <div>
+                                        <h5 class="mb-1 product-name"></h5>
+                                        <p class="mb-1 ">Số lượng: 
+                                            <button class="btn btn-sm btn-outline-secondary decrease-quantity">-</button>
+                                            <span class="product-quantity"></span>
+                                            <button class="btn btn-sm btn-outline-secondary increase-quantity">+</button>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Giá sản phẩm và nút xóa -->
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-muted fw-bolder product-price" style="margin-right: 10px;"></span>
-                                <button class="btn btn-sm btn-outline-dark remove-item" data-index="">&times;</button>
+                                <!-- Giá sản phẩm và nút xóa -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted fw-bolder product-price" style="margin-right: 10px;"></span>
+                                    <button class="btn btn-sm btn-outline-dark remove-item" data-index="">&times;</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <!-- Cột phải: tổng giá và nút thanh toán -->

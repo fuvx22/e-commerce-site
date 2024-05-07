@@ -76,6 +76,7 @@ function handleOrdering(event) {
           .addEventListener("hide.bs.modal", function () {
             window.location.href = "/e-commerce-site/index.php";
           });
+        // console.log(data);
       }
     })
     .catch((error) => {

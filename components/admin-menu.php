@@ -36,7 +36,7 @@ function checkReadPermission($read_permission_list, $feature_id)
       </a>
     </div>
     <div class="admin-menu-item <?= checkReadPermission($read_permission_list, "1") ?>">
-      <a href="../pages/order.php">đơn hàng</a>
+      <a href="../pages/order_manage.php">đơn hàng</a>
     </div>
     <div class="admin-menu-item <?= checkReadPermission($read_permission_list, "2") ?>">
       <a href="../pages/product.php">sản phẩm</a>

@@ -12,7 +12,7 @@
             $age = $diff->y;
             $role = 2;
             $enrollDate = date("Y-m-d");
-            if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $name)  ){
+            if(!preg_match('/^[a-zA-ZÀ-ỹ\s]+$/u', $name)){
                 header("Location:../pages/register.php?error=failed");
                 exit();
             }
