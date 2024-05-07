@@ -6,6 +6,8 @@ $conn = new Database();
 $userAuth = new userAuth($conn);
 $isUpdate = $userAuth->checkUpdatePermission("2");
 
+$categorys = $conn->query("SELECT * FROM subcategory");
+
 if (!$isUpdate) {
   header("Location: ../pages/product.php");
   exit();

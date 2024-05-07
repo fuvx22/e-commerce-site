@@ -37,9 +37,15 @@ function formatNumber($number)
         <div class="p-5">
             <h1 class="text-center">Phiếu nhập</h1>
         </div>
-        <div>
-            <a href="../receipt_control/receipt_form.php" class="btn btn-success mb-1" style="padding:7px 40px">Thêm</a>
-        </div>
+        <?php
+        if ($isCreate) {
+            echo '
+            <div>
+                <a href="../receipt_control/receipt_form.php" class="btn btn-success mb-1" style="padding:7px 40px">Thêm</a>
+            </div> ';
+        }
+        ?>
+
         <div>
             <table class="table table-hover" id="tab">
                 <thead class="table-dark">
@@ -66,7 +72,7 @@ function formatNumber($number)
                 newRow += "<td>" + data[i].supplierName + "</td>";
                 newRow += "<td>" + data[i].enrollDate + "</td>";
                 newRow += '<td>' +
-                    '<a href="#" class="text-secondary" name="btnDel" >' +
+                    '<a <?= $isDelete ? "" : "hidden" ?> href="#" class="text-danger" name="btnDel" >' +
                     '<i class="fa-solid fa-trash fs-5 mx-1"></i>' +
                     '</a>' +
                     '</td>';
