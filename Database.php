@@ -31,15 +31,6 @@ class Database
     return $result;
   }
 
-  public function insert($sql)
-  {
-    if ($this->conn->query($sql) === TRUE) {
-      return $this->conn->insert_id;
-    } else {
-      return false;
-    }
-  }
-  
   // Phương thức ngắt kết nối
   public function close()
   {
