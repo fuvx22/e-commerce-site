@@ -33,8 +33,13 @@ function checkReadPermission($read_permission_list, $feature_id)
 
 <body>
   <div class="side-menu d-flex flex-column">
+    <div class="side-menu-item p-2">
+      <a href="../index.php">
+        Quay về shop
+      </a>
+    </div>
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "1") ?>">
-      <a href="">Quản lý đơn hàng</a>
+      <a href="../pages/order_manage.php">Quản lý đơn hàng</a>
     </div>
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "2") ?>">
       <a href="../pages/product.php">Quản lý sản phẩm</a>

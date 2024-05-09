@@ -18,7 +18,7 @@
   justify-content: space-evenly;
   margin: 5px;
   padding: 5px;
-  height: 40px;
+  height: 45px;
 }
 
 .icon-cartshopping {
@@ -34,7 +34,7 @@
 }
 
 .topmenuright i {
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   font-size: 20px;
   color: blue;
@@ -203,9 +203,9 @@ input {
 }
 
 .head-bottom {
-  height: 40px;
   background-color: white;
   padding-left: 100px;
+  height: 45px;
 }
 .cart {
   position: fixed;
@@ -391,7 +391,15 @@ input {
 }
 
 .item {
-  background-color: #ddd;
-  padding: 20px;
   text-align: center;
+  left: -25px;
+}
+
+.item li {
+  margin: 0;
+  width: 100%;
+}
+
+.item li:hover {
+  background-color: #f0f0f0;
 }

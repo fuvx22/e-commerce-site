@@ -2,6 +2,7 @@
  require_once("../db_connect.php");
  require_once("../utils/user-auth.php");
  require_once("../model/orderModel.php");
+ session_start();
  $conn = new Database();
  
  $userAuth = new userAuth($conn);
@@ -10,10 +11,20 @@
  $isCreate = $userAuth->checkCreatePermission("2");
  $isUpdate = $userAuth->checkUpdatePermission("2");
  $isDelete = $userAuth->checkDeletePermission("2");
- $orders = orderModel::getOrder();
-
+ if(isset($_SESSION['startDate']) && isset($_SESSION['endDate'])){
+     $startDate = $_SESSION['startDate'];
+     $endDate = $_SESSION['endDate'];
+     unset($_SESSION['startDate']);
+    unset($_SESSION['endDate']);
+ }
+ $orders = isset($_SESSION['filtered_orders']) ? $_SESSION['filtered_orders'] : orderModel::getOrder();
  $conn->close();
-
+?>
+<?php 
+    // Unset the session variable after using it
+    if(isset($_SESSION['filtered_orders'])) {
+        unset($_SESSION['filtered_orders']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +42,28 @@
     <div class="col mt-2 ms-2">
         <h3>Quản Lí Đơn Hàng</h3>
     </div>
-
+    <div class="container mt-3 d-flex justify-content-center ">
+    <form method="post" action="/e-commerce-site/controller/searchOrderedDateController.php">
+        <div class="row">
+            <p class="fw-bold fs-4">Lọc Theo Ngày Đặt Hàng</p>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="startDate"  class="form-label">Từ Ngày</label>
+                    <input type="date" value="<?php echo $startDate; ?>" name="startDate" class="form-control" id="startDate">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">Đến Ngày</label>
+                    <input type="date" value="<?php echo $endDate; ?>" name="endDate" class="form-control" id="endDate">
+                </div>
+            </div>
+            <div class="col align-self-end mb-3">
+                <button type="submit" class="btn btn-primary">Lọc</button>
+            </div>
+        </div>
+    </form>
+    </div>
     <?php if(is_array($orders)): ?>
     <?php foreach($orders as $order): ?>
         <div class=" mb-3 border  rounded list-group-item d-flex justify-content-between align-items-center">

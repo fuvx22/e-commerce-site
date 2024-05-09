@@ -3,7 +3,7 @@
     class orderModel{
         public static function getOrder(){
             $db = new Database();
-            $sql = "SELECT * FROM `order`";
+            $sql = "SELECT * FROM `order` ORDER BY enrollDate desc";
             $result = $db -> query($sql);
             if($result->num_rows > 0){
                 return $result->fetch_all(MYSQLI_ASSOC);
@@ -102,6 +102,17 @@
             $sql = "UPDATE `order` SET shippedDate = '$shippedDate' WHERE id = '$orderId'";
             $result = $db->query($sql);
             return $result;
+        }
+        public static function getOrderByDate($startDate, $endDate){
+            $db = new Database();
+            $sql = "SELECT * FROM `order` WHERE enrollDate BETWEEN '$startDate' AND '$endDate'";
+            $result = $db->query($sql);
+            if($result->num_rows > 0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else{
+                return false;
+            }
         }
     }
 ?>

@@ -39,7 +39,7 @@ class Database
       return false;
     }
   }
-  
+
   // Phương thức ngắt kết nối
   public function close()
   {
