@@ -50,7 +50,12 @@
                         <button class="btn-register">Đăng Kí</button>
                     </div>
                     <div class="forgot-register">
-                        <a href="../index.php"><i class="fas fa-long-arrow-alt-left icon-arrow"></i>Quay Về Trang Chủ</a>
+                        <a href="../index.php">
+                            <i class="fa-solid fa-circle-arrow-left"></i>
+                            Quay Về Trang Chủ
+                        </a>
+                        <span class="mx-1">|</span>
+                        <a href="../pages/login.php">Đã có tài khoản</a>
                     </div>
                 </form>
             </div>
