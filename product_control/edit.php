@@ -5,7 +5,7 @@ $id = $_GET["id"];
 $sql = "SELECT * FROM product WHERE id = '$id' LIMIT 1";
 $res = $conn->query($sql);
 $row = mysqli_fetch_assoc($res);
-
+$categorys = $conn->query("SELECT * FROM subcategory");
 $roleId = $conn->query("SELECT * FROM role");
 
 if (isset($_POST["submit"])) {
