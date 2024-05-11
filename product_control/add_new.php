@@ -1,6 +1,16 @@
 <?php
-require("../db_connect.php");
+require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isCreate = $userAuth->checkCreatePermission("2");
+
+if (!$isCreate) {
+  header("Location: ../pages/product.php");
+  exit();
+}
+
 
 $categorys = $conn->query("SELECT * FROM subcategory");
 
@@ -23,7 +33,7 @@ if (isset($_POST["submit"])) {
   if ($result) {
     session_start();
     $_SESSION["product_msg"] = "Thêm sản phẩm thành công";
-    header("Location: ../product.php");
+    header("Location: ../pages/product.php");
   }
 
   $conn->close();
@@ -84,7 +94,7 @@ if (isset($_POST["submit"])) {
 
         <div class="mb-2 text-right">
           <button type="submit" class="btn btn-success" name="submit">Lưu</button>
-          <a href="../product.php" class="btn btn-danger">Hủy</a>
+          <a href="../pages/product.php" class="btn btn-danger">Hủy</a>
         </div>
       </form>
     </div>

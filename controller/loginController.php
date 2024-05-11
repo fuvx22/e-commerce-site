@@ -8,11 +8,16 @@
             if($userData){
                 session_start();
                 $_SESSION['userData'] = $userData; 
-                header("Location:../pages/landingPage.php");
+                header("Location:../index.php");
+                
             } else {
                 header("Location:../pages/login.php?error=failed");
                 exit(); // Đảm bảo không có mã nào được thực thi sau khi chuyển hướng
             }
         }
+    }
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        header("Location:../pages/login.php");
+        exit();
     }
 ?>

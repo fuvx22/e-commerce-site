@@ -14,9 +14,10 @@
 </head>
 
 <body>
-  <?php
-  require "./components/header.php"
-  ?>
+<?php
+  require "./components/header.php";  
+?>
+  
   <div class="showimg">
     <div class="topmenu">
       <?php
@@ -39,5 +40,6 @@
 </body>
 <script src="./javascripts/example.js">
 </script>
+<script src="./javascripts/cart.js"></script>
 
 </html>

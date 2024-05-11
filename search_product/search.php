@@ -150,3 +150,5 @@
         xhr.send(formData);
     }
 </script>
+<script src="../javascripts/example.js"></script>
+<script src="../javascripts/cart.js"></script>

@@ -1,6 +1,16 @@
 <?php
-require("../db_connect.php");
+require_once("../db_connect.php");
+require_once("../utils/user-auth.php");
 $conn = new Database();
+
+$userAuth = new userAuth($conn);
+$isUpdate = $userAuth->checkUpdatePermission("4");
+
+if (!$isUpdate) {
+  header("Location: ../pages/category.php");
+  exit();
+}
+
 $id = $_GET["id"];
 $sql = "SELECT * FROM subcategory WHERE id = '$id' LIMIT 1";
 $res = $conn->query($sql);

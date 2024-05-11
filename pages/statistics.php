@@ -17,7 +17,6 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js"></script>
     <?php
-        require('../components/header.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
         $database = new Database();
         if(isset($_GET['index'])){
@@ -46,14 +45,15 @@
         }
         $database->close();
     ?>
-    <div class="container" style="margin-top: 150px;">
+    <div class="container" style="margin-top: 50px;">
+        <h2>Thống kê bán hàng</h2>
         <div class="text-center">
             <button type="button" class="btn btn-primary btn-sm"><a href="?param=1" class="text-white text-decoration-none">Doanh thu</a></button>
             <button type="button" class="btn btn-primary btn-sm"><a href="?param=2" class="text-white text-decoration-none">Sản phẩm</a></button>
         </div>
         <div id="date"></div>
         <div id="line-chart"></div>
-        <div id="top-product" class="row"></div>
+        <div id="top-product" class="row justify-content-center"></div>
         <div id="pie-chart"></div>
     </div>
     <script>
@@ -108,7 +108,7 @@
                 var productImage = data_pie_chart[i][1];
                 var totalQuantitySold = data_pie_chart[i][2];
                 rank = i+1;
-                div += '<div class="card col-md-3 my-4" style="width: 18rem;">' +
+                div += '<div class="card col-md-3 my-4 mx-1" style="width: 18rem;">' +
                     '<p class="text-center fs-1 border-bottom">Top '+rank+'</p>'+
                     '<img src="' + productImage + '" class="card-img-top" alt="' + productName + '">' +
                     '<div class="card-body">' +
@@ -141,10 +141,5 @@
             }
         }
     </script>
-    <div class="footer">
-        <div class="footerleft">
-        <?php require ("../components/footer.php");?>
-        </div>
-    </div>
 </body>
 </html> 
