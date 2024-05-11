@@ -69,40 +69,45 @@
             var separator = currentUrl.indexOf('?') !== -1 ? '&' : '?';
             window.location.href = currentUrl + separator + 'index=' + selectedValue;
         }
-        if (paramValue === null || paramValue === undefined) {
-            paramValue = '1';
-        }
+        // Biểu đồ đường
+        var selectHTML = '<select class="mb-4" id="mySelect" onchange="onSelectChange()">' +
+                            '<option value="1" <?php if($indexValue === '1') echo 'selected'; ?>>Tuần qua</option>' +
+                            '<option value="2" <?php if($indexValue === '2') echo 'selected'; ?>>Tháng qua</option>' +
+                            '<option value="3" <?php if($indexValue === '3') echo 'selected'; ?>>Năm qua</option>' +
+                        '</select>';
+        document.getElementById('date').innerHTML = selectHTML;
+        bb.generate({
+            bindto: "#line-chart",
+            data: {
+                x: "x",
+                columns: [
+                    ['x'].concat(data_line_chart.map(item => item[0])),
+                    ['Revenue'].concat(data_line_chart.map(item => item[1]))
+                ],
+                types: {
+                    Revenue: "area-spline"
+                }
+            },
+            axis: {
+                x: {
+                    type: "timeseries",
+                    tick: {
+                        format: "%d/%m/%y"
+                    }
+                }
+            },
+        });
+        var selectElement = document.getElementById('mySelect');
+        var chartElement = document.getElementById('line-chart');
         if (paramValue === '1') {
-            var selectHTML = '<select class="mb-4" id="mySelect" onchange="onSelectChange()">' +
-                                '<option value="1" <?php if($indexValue === '1') echo 'selected'; ?>>Tuần qua</option>' +
-                                '<option value="2" <?php if($indexValue === '2') echo 'selected'; ?>>Tháng qua</option>' +
-                                '<option value="3" <?php if($indexValue === '3') echo 'selected'; ?>>Năm qua</option>' +
-                            '</select>';
-            document.getElementById('date').innerHTML = selectHTML;
-            bb.generate({
-                bindto: "#line-chart",
-                data: {
-                    x: "x",
-                    columns: [
-                        ['x'].concat(data_line_chart.map(item => item[0])),
-                        ['Revenue'].concat(data_line_chart.map(item => item[1]))
-                    ],
-                    types: {
-                        Revenue: "area-spline"
-                    }
-                },
-                axis: {
-                    x: {
-                        type: "timeseries",
-                        tick: {
-                            format: "%d/%m/%y"
-                        }
-                    }
-                },
-            });
+            selectElement.style.display = 'block';
+            chartElement.style.display = 'block';
         } 
+        //Biểu đồ tròn
         if (paramValue === '2') {
             var div = '';
+            selectElement.style.display = 'none';
+            chartElement.style.display = 'none';
             for (var i = 0; i < data_pie_chart.length; i++) {
                 var productName = data_pie_chart[i][0];
                 var productImage = data_pie_chart[i][1];
