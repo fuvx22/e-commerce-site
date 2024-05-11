@@ -49,23 +49,38 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-/* .topmenuleft i{
-transform: translateY(10%);
-font-size: 60px;
-padding-left: 15px;
-color: blue;
-} */
+.banner-text {
+  margin: 0;
+  padding: 0;
+  line-height: 25px;  
+  animation: floating 5s infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  30% { transform: translateY(0px); }
+  60% { transform: translateY(-25px); }
+  90% { transform: translateY(-50px); }
+  100% { transform: translateY(0px); }
+}
+
 .showimg {
-  /* width: 100%; */
   left: 0;
   right: 0;
   overflow: hidden;
-  margin-top: 130px;
+  margin-top: 120px;
+  height: 800px;
 }
 
 .topmenu {
+  width: 100%;
   display: flex;
   transition: 0.5s;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .lietke {
@@ -83,6 +98,7 @@ color: blue;
 }
 
 .footer {
+  padding-top: 30px;
   padding-left: 160px;
   display: flex;
   border-top: solid 1px grey;
@@ -99,7 +115,6 @@ color: blue;
 }
 
 .footericon i {
-  border: solid 1px grey;
   padding: 3px;
   font-size: 30px;
   margin: 10px;
@@ -110,7 +125,7 @@ h4 {
 }
 
 .head-text {
-  height: 30px;
+  height: 25px;
   background-color: black;
   overflow: hidden;
 }
@@ -226,9 +241,14 @@ input {
   align-items: center; /* Căn giữa nội dung bên trong theo chiều dọc */
 }
 .cart_header i {
-  padding: 20px;
-  padding-left: 200px;
+  padding: 13px 15px;
+  margin-left: 200px;
   cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }
 
 .cart_header h3 {
