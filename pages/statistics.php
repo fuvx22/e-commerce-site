@@ -47,7 +47,6 @@
         $database->close();
     ?>
     <div class="container" style="margin-top: 150px;">
-    <h1 class="fs-1 text-center">THỐNG KÊ</h1>
         <div class="text-center">
             <button type="button" class="btn btn-primary btn-sm"><a href="?param=1" class="text-white text-decoration-none">Doanh thu</a></button>
             <button type="button" class="btn btn-primary btn-sm"><a href="?param=2" class="text-white text-decoration-none">Sản phẩm</a></button>
@@ -96,7 +95,7 @@
                     x: {
                         type: "timeseries",
                         tick: {
-                            format: "%m/%d"
+                            format: "%d/%m/%y"
                         }
                     }
                 },
