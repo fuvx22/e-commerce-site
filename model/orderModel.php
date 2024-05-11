@@ -26,7 +26,7 @@
         }
         public static function getOrderById($userId){
             $db = new Database();
-            $sql = "SELECT * FROM `order` WHERE userId = '$userId'";
+            $sql = "SELECT * FROM `order` WHERE userId = '$userId' ORDER BY enrollDate desc";
             $result = $db->query($sql);
             if($result->num_rows > 0){
                 return $result->fetch_all(MYSQLI_ASSOC);

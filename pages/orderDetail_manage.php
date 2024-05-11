@@ -113,12 +113,18 @@ session_start();
                     $formattedDate = $date->format('Y-m-d');
                     echo $date->format('d/m/Y');;
                     }else {
-                        echo "<i class='fa fa-edit' id='edit-icon' onclick='handleEditDate()'></i>";
-                        echo "<form action='/e-commerce-site/controller/editShippedDateController.php' method='post'>";
-                        echo "<input type='date' name='shippedDate' id='select-date' style='display: none;'> ";
-                        echo "<input type='hidden' name='orderId' value='" . $order['id'] . "'>";
-                        echo "<button type='submit' class='btn btn-success' id='save-date' style='display: none;'>Lưu</button>";
-                        echo "</form>";
+                        if($order['status'] === "Đã Xử Lý"){
+                            echo "<i class='fa fa-edit' id='edit-icon' onclick='handleEditDate()'></i>";
+                            echo "<form action='/e-commerce-site/controller/editShippedDateController.php' method='post'>";
+                            echo "<input type='date' name='shippedDate' id='select-date' style='display: none;'> ";
+                            echo "<input type='hidden' name='orderId' value='" . $order['id'] . "'>";
+                            echo "<button type='submit' class='btn btn-success' id='save-date' style='display: none;'>Lưu</button>";
+                            echo "</form>";
+                        }
+                        else{
+                            echo "<p>Bạn Cần phải cập nhật đơn hàng</p>";
+                        }
+                        
                     }
                     ?></strong> </p>
                     <div class="mb-2">
@@ -138,7 +144,7 @@ session_start();
                     <p>Ghi chú: <strong><?php echo $order['description'] ?></strong> </p>
                     <div class="d-flex flex-column">
                         <div class="d-flex mb-4 justify-content-between">
-                        <button class=" btn btn-success mr-2 " onclick="editStatus()">Sửa Trạng Thái</button>
+                        <button class=" btn btn-success mr-2 " onclick="editStatus() <?php echo $payment ? 'disabled' : '';  ?>">Sửa Trạng Thái</button>
                         </div>
                         <button class=" btn btn-outline-dark w-50" onclick="cancleEdit()">Hủy</button>
                     </div>
@@ -183,7 +189,15 @@ session_start();
             <div class=" mt-4 d-flex justify-content-end">
             <form action="" method="post">
                     <input type="text" hidden name="totalAmount" value="<?php echo $total?>">
-                    <?php echo $payment ? "<p class=\"text-primary fs-5\">Đã thanh toán</p>" : '<button type="submit" name="submit" class="btn btn-success">Thanh Toán Đơn Hàng</button>'; ?>                    
+                    <?php
+                    if($order['shippedDate'] == null){
+                        echo "Đơn Hàng Chưa được giao! Không thể thanh toán";
+                    }
+                    else{
+                        echo $payment ? "<p class=\"text-primary fs-5\">Đã thanh toán</p>" : '<button type="submit" name="submit" class="btn btn-success">Thanh Toán Đơn Hàng</button>';
+                    }
+                    
+                     ?>                    
                 </form>
              
             </div>                
