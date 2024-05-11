@@ -29,13 +29,15 @@ function checkReadPermission($read_permission_list, $feature_id)
   <title>Document</title>
   <link rel="stylesheet" href="../assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/phu.css">
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
 </head>
 
 <body>
   <div class="side-menu d-flex flex-column">
     <div class="side-menu-item p-2">
       <a href="../index.php">
-        Quay về shop
+        <i class="fa-solid fa-store"></i>
+        <b>Quay về store</b>
       </a>
     </div>
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "1") ?>">
@@ -62,6 +64,11 @@ function checkReadPermission($read_permission_list, $feature_id)
     <div class="side-menu-item p-2 <?= checkReadPermission($read_permission_list, "8") ?>">
       <a href="../pages/payment.php">Quản lý thanh toán</a>
     </div>
+  </div>
+  <div class="" style="margin-left:250px">
+    <?php
+    require "../pages/statistics.php"
+    ?>
   </div>
 </body>
 

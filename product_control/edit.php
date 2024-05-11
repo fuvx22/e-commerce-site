@@ -17,7 +17,7 @@ $id = $_GET["id"];
 $sql = "SELECT * FROM product WHERE id = '$id' LIMIT 1";
 $res = $conn->query($sql);
 $row = mysqli_fetch_assoc($res);
-
+$categorys = $conn->query("SELECT * FROM subcategory");
 $roleId = $conn->query("SELECT * FROM role");
 
 if (isset($_POST["submit"])) {
@@ -70,7 +70,7 @@ if (isset($_POST["submit"])) {
   </div>
   <div class="container">
     <div class="text-center">
-      <h3>Cập nhật sản phẩm</h3>
+      <h3>Cập nhật tài khoản</h3>
     </div>
 
 

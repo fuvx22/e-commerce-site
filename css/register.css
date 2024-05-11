@@ -75,12 +75,9 @@
 }
 .register-right form .btn {
   display: flex;
-  margin-top: 15px;
-  /* Sử dụng flexbox để căn chỉnh phần tử bên trong */
 }
 /* CSS cho button Đăng Nhập */
 .register-right form .btn .btn-register {
-  margin-right: 22rem;
   padding: 10px 20px; /* Kích thước nút */
   border: 1px solid #323232; /* Loại bỏ viền */
   background-color: #323232; /* Màu nền ban đầu */
