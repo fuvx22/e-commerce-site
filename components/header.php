@@ -8,11 +8,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
 
 ?>
 <div class="header">
-  <div class="head-text">
-    <div class="text">
+  <div class="head-text text-center">
+    <!-- <div class="text">
       <p id="ftext">ĐĂNG KÝ TÀI KHOẢN ĐỂ MUA SẮM</p>
       <p id="ftext">ĐỔI TRẢ HÀNG MIỄN PHÍ</p>
-    </div>
+    </div> -->
+    <p class="banner-text" style="color:white">ĐĂNG KÝ/ ĐĂNG NHẬP TÀI KHOẢN ĐỂ MUA SẮM</p>
+    <p class="banner-text" style="color:white">MIỄN PHÍ VẬN CHUYỂN ĐƠN HÀNG TRÊN 500K</p>
+    <p class="banner-text" style="color:white">ĐỔI TRẢ HÀNG MIỄN PHÍ</p>
   </div>
   <div class="wrapper">
     <span class="topmenuleft">
@@ -21,7 +24,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
     <span class="topmenuright">
       <div class="search">
         <form action="/e-commerce-site/search_product/search.php" method="POST">
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <button class="btn btn-sm p-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
           <input type="text" placeholder="Tìm Kiếm" name="key">
         </form>
 
@@ -50,11 +55,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
         ?>
         <a href="/e-commerce-site/controller/loginController.php"><i class="fa-solid fa-circle-user"></i></a>
       <?php endif; ?>
-
-
-
-      <i class="fa-regular fa-heart"></i>
-      <a><i class="fa-solid fa-cart-shopping" id="cart"></i>
+      <a role="button"><i class="fa-solid fa-cart-shopping" id="cart"></i>
       </a>
     </span>
     <div class="product">
