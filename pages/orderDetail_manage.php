@@ -1,7 +1,11 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
+session_start();
  require_once("../db_connect.php");
  require_once("../utils/user-auth.php");
  require_once("../model/orderModel.php");
+ 
  $conn = new Database();
  
  $userAuth = new userAuth($conn);
@@ -16,6 +20,26 @@
     $productOrder = orderModel::getProductByOrderId($orderId);
  }
 
+ if (isset($_POST["submit"])) {
+    if(isset($_SESSION['userData'])){
+        $orderId = intval($_GET["id"]);
+        // print_r($_SESSION['userData']['id']);
+        $total = $_POST["totalAmount"];
+        $paymentDate = date("Y-m-d");
+        $employeeId = $_SESSION['userData']['id'];
+        $sql = "INSERT INTO `payment` (orderId, total, paymentDate, employeeId) 
+        VALUES ('$orderId', '$total', '$paymentDate', '$employeeId')";
+        $result = $conn -> query($sql);
+        if($result){
+            $_SESSION['paymentOrder_msg'] = "Thanh Toán Đơn Hàng Thành Công";
+            $order = orderModel::getOrderByIdOrder($orderId);
+            $productOrder = orderModel::getProductByOrderId($orderId);
+            // unset($_SESSION['paymentOrder_msg']);
+           //  header("Location: ../pages/orderDetail_manage.php?id=$orderId");  
+        }
+           
+    } 
+ }
  $conn->close();
 
 ?>
@@ -41,7 +65,21 @@
                 <div class="card-header text-center">
                     <strong>Thông Tin Đơn Hàng</strong>
                 </div>
+                <?php 
+                if (isset($_SESSION["paymentOrder_msg"])) {
+                    $msg = $_SESSION["paymentOrder_msg"];
+                    
+                    echo '
+                    <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
+                    . $msg .
+                    '
+                    </div>';
+                    unset($_SESSION["paymentOrder_msg"]);
+                //    echo "Xuất thông báo";
+                }
+                ?>
                 <?php
+                 
                 if (isset($_SESSION["orderUpdateStatus_msg"])) {
                     $msg = $_SESSION["orderUpdateStatus_msg"];
                     echo '
@@ -136,12 +174,18 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <strong>Tổng cộng:</strong>
-                        <span class="total-amount"><strong><?php echo number_format((float)$total, 0, '.', ',')?></strong> VNĐ</span>
+                        <span class="total-amount" name="totalAmout"><strong><?php echo number_format((float)$total, 0, '.', ',')?></strong> VNĐ</span>
                     </div>
                 </div>
             </div>
             <div class=" mt-4 d-flex justify-content-end">
-                <button class="btn btn-success">Thanh Toán Đơn Hàng</button>
+            <form action="" method="post">
+                    <input type="text" hidden name="totalAmount" value="<?php echo $total?>">
+                    <button  type="submit" name="submit" class="btn btn-success" onclick="paymentOrder()" >Thanh Toán Đơn Hàng</button>
+                    
+                </form>
+                <button  name="unsubmit" style="color:aqua;background-color: red;display: none;">Đã thanh toán</button>
+             
             </div>                
         </div>
     </div>
@@ -167,7 +211,24 @@
     function handleEditDate() {
         selectDate.style.display = 'block';
         saveDate.style.display = 'block';
-}
-    
+    }
+//     document.addEventListener("DOMContentLoaded", function() {
+//   var unsubmitButton = document.querySelector("button[name='unsubmit']");
+
+//   // Kiểm tra trạng thái đã thanh toán trong localStorage
+//   var isPaid = localStorage.getItem("isPaid");
+//   if (isPaid && isPaid === "true") {
+//     unsubmitButton.style.display = "block";
+//   }
+// });
+    function paymentOrder(){
+        //event.preventDefault(); 
+        document.getElementsByName('submit')[0].style.display = "none";
+    document.getElementsByName('unsubmit')[0].style.display = "block";
+    //localStorage.setItem("isPaid", "true");            
+       
+    }
+   
+
 </script>
-</html>
+</html> 
