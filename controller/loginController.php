@@ -11,7 +11,9 @@
                 header("Location:../index.php");
                 
             } else {
-                header("Location:../pages/login.php?error=failed");
+                session_start();
+                $_SESSION['error'] = "Tài khoản hoặc mật khẩu không đúng!";
+                header("Location:../pages/login.php");
                 exit(); // Đảm bảo không có mã nào được thực thi sau khi chuyển hướng
             }
         }

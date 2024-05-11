@@ -18,7 +18,9 @@
             }
             $userData = userModel::registerUser($name, $age, $email, $password, $role, $enrollDate );
             if($userData){
-                header("Location:../pages/login.php?success=register-success");
+                session_start();
+                $_SESSION['success'] = "Đăng Kí Tài Khoản Thành Công!";
+                header("Location:../pages/login.php");
             } else {
                 echo 'Đăng Kí Không Thành Công';
             }

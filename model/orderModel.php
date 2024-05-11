@@ -114,5 +114,17 @@
                 return false;
             }
         }
+        public static function getOrderPayment($orderId){
+            $db = new Database();
+            $sql = "SELECT * FROM `payment` WHERE orderId = '$orderId'";
+            $result = $db->query($sql);
+            if($result->num_rows > 0){
+                return $result->fetch_assoc();
+            }
+            else{
+                return false;
+            }
+
+        }
     }
 ?>

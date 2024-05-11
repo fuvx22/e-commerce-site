@@ -1,6 +1,4 @@
 <?php
-
-use function PHPSTORM_META\type;
 session_start();
  require_once("../db_connect.php");
  require_once("../utils/user-auth.php");
@@ -18,6 +16,12 @@ session_start();
     $orderId = $_GET["id"];
     $order = orderModel::getOrderByIdOrder($orderId);
     $productOrder = orderModel::getProductByOrderId($orderId);
+    $payment = null;
+    $sql = "SELECT * FROM `payment` WHERE orderId = '$orderId'";
+    $result = $conn -> query($sql);
+    if($result -> num_rows > 0){
+        $payment = $result -> fetch_assoc();
+    }
  }
 
  if (isset($_POST["submit"])) {
@@ -34,10 +38,12 @@ session_start();
             $_SESSION['paymentOrder_msg'] = "Thanh Toán Đơn Hàng Thành Công";
             $order = orderModel::getOrderByIdOrder($orderId);
             $productOrder = orderModel::getProductByOrderId($orderId);
-            // unset($_SESSION['paymentOrder_msg']);
-           //  header("Location: ../pages/orderDetail_manage.php?id=$orderId");  
+            $sql = "SELECT * FROM `payment` WHERE orderId = '$orderId'";
+            $result = $conn -> query($sql);
+            if($result -> num_rows > 0){
+                $payment = $result -> fetch_assoc();
+            }
         }
-           
     } 
  }
  $conn->close();
@@ -65,10 +71,9 @@ session_start();
                 <div class="card-header text-center">
                     <strong>Thông Tin Đơn Hàng</strong>
                 </div>
-                <?php 
-                if (isset($_SESSION["paymentOrder_msg"])) {
+                <?php
+                 if (isset($_SESSION["paymentOrder_msg"])) {
                     $msg = $_SESSION["paymentOrder_msg"];
-                    
                     echo '
                     <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
                     . $msg .
@@ -77,9 +82,6 @@ session_start();
                     unset($_SESSION["paymentOrder_msg"]);
                 //    echo "Xuất thông báo";
                 }
-                ?>
-                <?php
-                 
                 if (isset($_SESSION["orderUpdateStatus_msg"])) {
                     $msg = $_SESSION["orderUpdateStatus_msg"];
                     echo '
@@ -181,10 +183,8 @@ session_start();
             <div class=" mt-4 d-flex justify-content-end">
             <form action="" method="post">
                     <input type="text" hidden name="totalAmount" value="<?php echo $total?>">
-                    <button  type="submit" name="submit" class="btn btn-success" onclick="paymentOrder()" >Thanh Toán Đơn Hàng</button>
-                    
+                    <?php echo $payment ? "<p class=\"text-primary fs-5\">Đã thanh toán</p>" : '<button type="submit" name="submit" class="btn btn-success">Thanh Toán Đơn Hàng</button>'; ?>                    
                 </form>
-                <button  name="unsubmit" style="color:aqua;background-color: red;display: none;">Đã thanh toán</button>
              
             </div>                
         </div>

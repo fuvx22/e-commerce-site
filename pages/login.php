@@ -34,11 +34,23 @@
             </div>
             <div class="login-right">
                 <?php
-                if (isset($_GET['error']) && $_GET['error'] === 'failed') {
-                    echo '<p class="error-message">Tài Khoản hoặc mật khẩu không hợp lệ!</p>';
+                if (isset($_SESSION["error"])) {
+                    $msg = $_SESSION["error"];
+                    echo '
+                    <div id="myAlert" class="alert alert-danger alert-dismissible fade show" role="alert">'
+                    . $msg .
+                    '
+                    </div>';
+                    unset($_SESSION["error"]);
                 }
-                if (isset($_GET['success']) && $_GET['success'] === 'register-success') {
-                    echo '<p class="error-message">Đăng Kí Tài Khoản Thành Công!</p>';
+                if (isset($_SESSION["success"])) {
+                    $msg = $_SESSION["success"];
+                    echo '
+                    <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">'
+                    . $msg .
+                    '
+                    </div>';
+                    unset($_SESSION["success"]);
                 }
                 ?>
                 <form action="../controller/loginController.php" method="post">

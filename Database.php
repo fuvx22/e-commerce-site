@@ -9,7 +9,7 @@ class Database
 
   public function __construct()
   {
-    $this->host = "localhost:3306";
+    $this->host = "localhost:3307";
     $this->username = "root";
     $this->password = "";
     $this->dbname = "db_cuahangthoitrang";

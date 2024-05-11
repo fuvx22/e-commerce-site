@@ -41,6 +41,7 @@
                     <p>Địa chỉ: <strong><?php echo $order['address'] ?></strong> </p>
                     <p>Số điện thoại: <strong><?php echo $order['phoneNumber'] ?></strong> </p>
                     <p>Ghi chú: <strong><?php echo $order['description'] ?></strong> </p>
+                    <?php echo $orderPayment ? '<p class=\'text-danger mt-2 fs-5\'> Đã Thanh Toán</p>' : ''  ?>
                 </div>
             </div>
         </div>
@@ -76,6 +77,7 @@
                         <strong>Tổng cộng:</strong>
                         <span class="total-amount"><strong><?php echo number_format((float)$total, 0, '.', ',')?></strong> VNĐ</span>
                     </div>
+                    
                 </div>
             </div>
         </div>
