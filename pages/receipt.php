@@ -128,7 +128,9 @@ function formatNumber($number)
                         var row = $(this).closest("tr");
                         row.remove();
                         de = 0;
-                    } else {}
+                    } else {
+                        de = 0;
+                    }
                 }
             });
         }

@@ -27,8 +27,8 @@ $database->close();
 <body>
   <?php include("../components/admin-menu.php") ?>
   <div class="container">
-    <div class="col my-1">
-      <h3>Quản lý tài khoản</h3>
+    <div class="p-5">
+      <h1 class="text-center">Quản lý danh mục và thể loại sản phẩm</h1>
     </div>
     <table class="table text-center">
       <thead class="table-dark">

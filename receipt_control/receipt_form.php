@@ -291,9 +291,21 @@ function formatNumber($number)
             }
         }
 
+        function getDate() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // Thêm 1 vào tháng vì tháng bắt đầu từ 0
+            const dd = String(today.getDate()).padStart(2, '0');
+
+            // Tạo chuỗi định dạng ngày
+            const formattedDate = `${yyyy}-${mm}-${dd}`;
+            document.getElementById('date').value = formattedDate;
+        }
+
         $(document).ready(function() {
             del();
             getId();
+            getDate();
         });
     </script>
 </body>

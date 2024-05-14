@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,37 +14,38 @@
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.css">
 </head>
+
 <body>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js"></script>
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
-        $database = new Database();
-        if(isset($_GET['index'])){
-            $indexValue = $_GET['index'];
-        } else {
-            $indexValue = '1';
-        }
-        $query_line_chart = '';
-        if($indexValue == '1'){
-            $query_line_chart = "SELECT DATE(paymentDate) AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(paymentDate)";
-        } elseif ($indexValue == '2') {
-            $query_line_chart = "SELECT DATE_FORMAT(paymentDate, '%Y-%m') AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(paymentDate, '%Y-%m')";
-        } elseif ($indexValue == '3') {
-            $query_line_chart = "SELECT YEAR(paymentDate) AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) GROUP BY YEAR(paymentDate)";
-        }
-        $result_line_chart = $database->query($query_line_chart);
-        $data_line_chart = [];
-        while ($row = $result_line_chart->fetch_assoc()) {
-            $data_line_chart[] = [$row['day'], $row['quantity']];
-        }
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/e-commerce-site/db_connect.php');
+    $database = new Database();
+    if (isset($_GET['index'])) {
+        $indexValue = $_GET['index'];
+    } else {
+        $indexValue = '1';
+    }
+    $query_line_chart = '';
+    if ($indexValue == '1') {
+        $query_line_chart = "SELECT DATE(paymentDate) AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(paymentDate)";
+    } elseif ($indexValue == '2') {
+        $query_line_chart = "SELECT DATE_FORMAT(paymentDate, '%Y-%m') AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 12 MONTH) GROUP BY DATE_FORMAT(paymentDate, '%Y-%m')";
+    } elseif ($indexValue == '3') {
+        $query_line_chart = "SELECT YEAR(paymentDate) AS day, SUM(total) AS quantity FROM payment WHERE paymentDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 6 YEAR) GROUP BY YEAR(paymentDate)";
+    }
+    $result_line_chart = $database->query($query_line_chart);
+    $data_line_chart = [];
+    while ($row = $result_line_chart->fetch_assoc()) {
+        $data_line_chart[] = [$row['day'], $row['quantity']];
+    }
 
-        $result_pie_chart = $database->query("SELECT p.name AS product_name, p.image AS product_image, SUM(ol.quantity) AS total_quantity_sold FROM orderline ol JOIN product p ON ol.productId = p.id GROUP BY p.name ORDER BY total_quantity_sold DESC LIMIT 4");
-        $data_pie_chart = [];
-        while ($row = $result_pie_chart->fetch_assoc()) {
-            $data_pie_chart[] = [$row['product_name'], $row['product_image'],$row['total_quantity_sold']];
-        }
-        $database->close();
+    $result_pie_chart = $database->query("SELECT p.name AS product_name, p.image AS product_image, SUM(ol.quantity) AS total_quantity_sold FROM orderline ol JOIN product p ON ol.productId = p.id GROUP BY p.name ORDER BY total_quantity_sold DESC LIMIT 4");
+    $data_pie_chart = [];
+    while ($row = $result_pie_chart->fetch_assoc()) {
+        $data_pie_chart[] = [$row['product_name'], $row['product_image'], $row['total_quantity_sold']];
+    }
+    $database->close();
     ?>
     <div class="container" style="margin-top: 50px;">
         <h2>Thống kê bán hàng</h2>
@@ -61,6 +63,7 @@
         const paramValue = urlParams.get('param');
         var data_line_chart = <?php echo json_encode($data_line_chart); ?>;
         var data_pie_chart = <?php echo json_encode($data_pie_chart); ?>;
+
         function onSelectChange() {
             var selectElement = document.getElementById('mySelect');
             var selectedValue = selectElement.value;
@@ -71,10 +74,10 @@
         }
         // Biểu đồ đường
         var selectHTML = '<select class="mb-4" id="mySelect" onchange="onSelectChange()">' +
-                            '<option value="1" <?php if($indexValue === '1') echo 'selected'; ?>>Tuần qua</option>' +
-                            '<option value="2" <?php if($indexValue === '2') echo 'selected'; ?>>Tháng qua</option>' +
-                            '<option value="3" <?php if($indexValue === '3') echo 'selected'; ?>>Năm qua</option>' +
-                        '</select>';
+            '<option value="1" <?php if ($indexValue === '1') echo 'selected'; ?>>Tuần</option>' +
+            '<option value="2" <?php if ($indexValue === '2') echo 'selected'; ?>>Tháng</option>' +
+            '<option value="3" <?php if ($indexValue === '3') echo 'selected'; ?>>Năm</option>' +
+            '</select>';
         document.getElementById('date').innerHTML = selectHTML;
         bb.generate({
             bindto: "#line-chart",
@@ -102,7 +105,7 @@
         if (paramValue === '1') {
             selectElement.style.display = 'block';
             chartElement.style.display = 'block';
-        } 
+        }
         //Biểu đồ tròn
         if (paramValue === '2') {
             var div = '';
@@ -112,13 +115,13 @@
                 var productName = data_pie_chart[i][0];
                 var productImage = data_pie_chart[i][1];
                 var totalQuantitySold = data_pie_chart[i][2];
-                rank = i+1;
+                rank = i + 1;
                 div += '<div class="card col-md-3 my-4 mx-1" style="width: 18rem;">' +
-                    '<p class="text-center fs-1 border-bottom">Top '+rank+'</p>'+
+                    '<p class="text-center fs-1 border-bottom">Top ' + rank + '</p>' +
                     '<img src="' + productImage + '" class="card-img-top" alt="' + productName + '">' +
                     '<div class="card-body">' +
                     '<h5 class="card-title">' + productName + '</h5>' +
-                    '<p class="card-text">Total quantity sold: ' + totalQuantitySold + '</p>' +
+                    '<p class="card-text">Tổng số lượng đã bán: ' + totalQuantitySold + '</p>' +
                     '</div>' +
                     '</div>';
             }
@@ -131,7 +134,7 @@
                 },
             });
         }
-        
+
         function removeIndexParams(url) {
             var urlParts = url.split('?');
             if (urlParts.length > 1) {
@@ -147,4 +150,5 @@
         }
     </script>
 </body>
-</html> 
+
+</html>

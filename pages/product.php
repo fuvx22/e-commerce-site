@@ -38,10 +38,10 @@ function formatNumber($number)
 <body>
   <?php include("../components/admin-menu.php") ?>
   <div class="container">
-    <div class="col mt-2 ms-2">
-      <h3>Quản lý sản phẩm</h3>
+    <div class="p-5">
+      <h1 class="text-center">Quản lý sản phẩm</h1>
     </div>
-    <div class="container my-3">
+    <div class="container mb-1">
       <?php
       if ($isCreate) {
         echo '<a href="../product_control/add_new.php" class="btn btn-success">Thêm sản phẩm</a>';
@@ -87,7 +87,7 @@ function formatNumber($number)
                 <th scope="row"><?php echo $count ?></th>
                 <td><?php echo $row['id'] ?></td>
                 <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['image'] ?></td>
+                <td style="max-width: 150px; overflow:hidden;"><?php echo $row['image'] ?></td>
                 <td><?php echo $row['description'] ?></td>
                 <td><?php echo $row['sname'] ?></td>
                 <td><?php echo formatNumber($row['price']) ?>đ</td>

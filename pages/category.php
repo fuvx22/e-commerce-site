@@ -34,7 +34,9 @@ $conn->close();
   <?php include("../components/admin-menu.php") ?>
   <div class="container">
     <div class="container">
-      <h3>Quản lý danh mục và thể loại sản phẩm</h3>
+      <div class="p-5">
+        <h1 class="text-center">Quản lý danh mục và thể loại sản phẩm</h1>
+      </div>
       <?php
       if (isset($_SESSION["subcategory_msg"])) {
         $msg = $_SESSION["subcategory_msg"];

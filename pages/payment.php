@@ -18,8 +18,8 @@ $conn->close();
 <body>
   <?php include("../components/admin-menu.php") ?>
   <div class="container">
-    <div class="col mt-2 ms-2">
-      <h3>Quản lý thanh toán</h3>
+    <div class="p-5">
+      <h1 class="text-center">Quản lý thanh toán</h1>
     </div>
     <div class="container">
       <table class="table text-center">

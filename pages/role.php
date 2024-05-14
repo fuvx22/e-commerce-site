@@ -39,10 +39,10 @@ function formatNumber($number)
 <body>
   <?php include("../components/admin-menu.php") ?>
   <div class="container">
-    <div class="col mt-2 ms-2">
-      <h3>Quản lý quyền</h3>
+    <div class="p-5">
+      <h1 class="text-center">Quản lý quyền</h1>
     </div>
-    <div class="container my-3">
+    <div class="container mb-1">
       <?php
       if ($isCreate) {
         echo '<a href="../role_control/add-role.php" class="btn btn-success">Thêm quyền mới</a>';

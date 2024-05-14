@@ -70,7 +70,7 @@ if (isset($_POST["submit"])) {
   </div>
   <div class="container">
     <div class="text-center">
-      <h3>Cập nhật tài khoản</h3>
+      <h3>Cập nhật sản phẩm</h3>
     </div>
 
 
@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="mb-2">
           <label class="form-label">Hình ảnh sản phẩm:</label>
-          <input type="file" class="custom-file-input" name="product_image" style="opacity: 1;" accept="image/png, image/gif, image/jpeg">
+          <input type="file" class="custom-file-input" name="product_image" style="opacity: 1;" accept="image/png, image/gif, image/jpeg, image/webp">
           <p>Hình ảnh sản phẩm hiện tại: <?php echo $row['image'] ?></p>
         </div>
         <div class="mb-2">

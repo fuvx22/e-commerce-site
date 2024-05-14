@@ -173,18 +173,18 @@ input {
 .item {
   background-color: white;
   display: none;
-  width: 150px;
+  min-width: 150px;
   position: absolute;
   top: 50px;
 }
 .item ul {
   padding: 0px;
+  margin: 0 10px;
 }
 .item li {
   /* text-align: center; */
 
   border-color: rgb(82, 124, 161);
-  margin: 15px;
 
   white-space: nowrap;
 }
@@ -416,7 +416,8 @@ input {
 }
 
 .item li {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   width: 100%;
 }
 
