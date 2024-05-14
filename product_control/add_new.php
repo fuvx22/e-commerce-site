@@ -68,7 +68,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="mb-2">
           <label class="form-label">Hình ảnh sản phẩm:</label>
-          <input type="file" class="custom-file-input" required name="product_image" style="opacity: 1;" accept="image/png, image/gif, image/jpeg">
+          <input type="file" class="custom-file-input" required name="product_image" style="opacity: 1;" accept="image/png, image/gif, image/jpeg, image/webp">
         </div>
         <div class="mb-2">
           <label class="form-label">Mô tả sản phẩm:</label>

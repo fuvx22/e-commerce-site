@@ -1,10 +1,11 @@
 <?php
-require_once ("../db_connect.php ");
-$conn= new Database();
-$sql="SELECT * FROM payment";
-$payment= $conn->query($sql);
+require_once("../db_connect.php");
+$conn = new Database();
+$sql = "SELECT * FROM payment";
+$payment = $conn->query($sql);
 $conn->close();
 ?>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,10 +40,10 @@ $conn->close();
           ?>
               <tr>
                 <td><?php echo $row['orderId'] ?></td>
-                <td><?php echo $row['total']?>đ</td>
+                <td><?php echo $row['total'] ?>đ</td>
                 <td><?php echo $row['paymentDate'] ?></td>
                 <td><?php echo $row['employeeId'] ?></td>
-              </tr> 
+              </tr>
           <?php
             }
           }
@@ -51,6 +52,7 @@ $conn->close();
       </table>
     </div>
 
-   
+
 </body>
+
 </html>
