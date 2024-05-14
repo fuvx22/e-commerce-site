@@ -1,5 +1,5 @@
 <?php
-require_once ("../db_connect.php ");
+require_once ("../db_connect.php");
 $conn= new Database();
 $sql="SELECT * FROM payment";
 $payment= $conn->query($sql);
